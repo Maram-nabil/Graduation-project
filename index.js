@@ -50,5 +50,15 @@ app.use(URL_Error);
 // Log server start and database connection
 console.log("[SERVER] Server is starting...");
 
-// Start the server
-app.listen(port, "0.0.0.0", () => console.log(`[SERVER] Server listening on port ${port}!`));
+// Start the server using an http server so WebSocket can attach or run separately
+import http from 'http';
+import { startWsServer } from "./src/module/analysis/wsServer.js";
+
+// Default HTTP port (3001) to match your expectation
+const httpPort = process.env.PORT || 3001;
+
+const server = http.createServer(app);
+server.listen(httpPort, "0.0.0.0", () => console.log(`[SERVER] Server listening on port ${httpPort}!`));
+
+// Start standalone WebSocket server for real-time analysis pushes (port 3002)
+startWsServer({ port: process.env.WS_PORT ? Number(process.env.WS_PORT) : 3002 });

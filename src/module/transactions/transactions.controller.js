@@ -3,6 +3,8 @@ import { Transactions } from "../../../DB/models/transactions.model.js";
 import { ApiFeature } from "../../utils/API.Feature.js";
 import { AppError } from "../../utils/AppError.js";
 import { catchError } from "../../utils/catchError.js";
+import axios from "axios";
+import { broadcastAnalysis } from "../analysis/wsServer.js";
 
 // Create a transaction with text
 export const createWithText = catchError(async (req, res, next) => {
@@ -33,6 +35,25 @@ export const createWithText = catchError(async (req, res, next) => {
     });
 
     console.log("Data saved in database:", data);
+
+    // trigger analysis asynchronously: send the newly created transaction to FastAPI
+    (async () => {
+        try {
+            const categories = await Category.find({ user: req.user._id }).lean();
+            let items = [];
+            try {
+                const { Item } = await import("../../../DB/models/item.model.js");
+                items = await Item.find({ user: req.user._id }).lean();
+            } catch (e) { items = []; }
+
+            const ANALYSIS_URL = process.env.ANALYSIS_URL || "http://127.0.0.1:8000/analyze";
+            const payload = { user_id: String(req.user._id), transactions: [data], categories, items };
+            const resp = await axios.post(ANALYSIS_URL, payload, { timeout: 20000 });
+            if (resp && resp.data) broadcastAnalysis(resp.data);
+        } catch (err) {
+            console.error('[ANALYSIS] error sending to analysis service', err.message || err);
+        }
+    })();
 
     res.status(201).json({ message: "Transaction created successfully", data });
 });
@@ -71,6 +92,24 @@ export const createWithVoice = catchError(async (req, res, next) => {
 
     console.log("Data saved in database:", data);
 
+    (async () => {
+        try {
+            const categories = await Category.find({ user: req.user._id }).lean();
+            let items = [];
+            try {
+                const { Item } = await import("../../../DB/models/item.model.js");
+                items = await Item.find({ user: req.user._id }).lean();
+            } catch (e) { items = []; }
+
+            const ANALYSIS_URL = process.env.ANALYSIS_URL || "http://127.0.0.1:8000/analyze";
+            const payload = { user_id: String(req.user._id), transactions: [data], categories, items };
+            const resp = await axios.post(ANALYSIS_URL, payload, { timeout: 20000 });
+            if (resp && resp.data) broadcastAnalysis(resp.data);
+        } catch (err) {
+            console.error('[ANALYSIS] error sending to analysis service', err.message || err);
+        }
+    })();
+
     res.status(201).json({ message: "Transaction created successfully", data });
 });
 
@@ -107,6 +146,24 @@ export const createWithOCR = catchError(async (req, res, next) => {
     });
 
     console.log("Data saved in database:", data);
+
+    (async () => {
+        try {
+            const categories = await Category.find({ user: req.user._id }).lean();
+            let items = [];
+            try {
+                const { Item } = await import("../../../DB/models/item.model.js");
+                items = await Item.find({ user: req.user._id }).lean();
+            } catch (e) { items = []; }
+
+            const ANALYSIS_URL = process.env.ANALYSIS_URL || "http://127.0.0.1:8000/analyze";
+            const payload = { user_id: String(req.user._id), transactions: [data], categories, items };
+            const resp = await axios.post(ANALYSIS_URL, payload, { timeout: 20000 });
+            if (resp && resp.data) broadcastAnalysis(resp.data);
+        } catch (err) {
+            console.error('[ANALYSIS] error sending to analysis service', err.message || err);
+        }
+    })();
 
     res.status(201).json({ message: "Transaction created successfully", data });
 });

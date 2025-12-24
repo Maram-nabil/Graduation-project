@@ -38,4 +38,4 @@ const schema = new mongoose.Schema(
 );
 
 // Create and export the Transactions  model
-export const Transactions  = mongoose.model("Transactions ", schema); // Export the Transactions  model
+export const Transactions  = mongoose.model("Transactions", schema); // Export the Transactions  model

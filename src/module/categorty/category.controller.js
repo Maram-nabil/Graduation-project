@@ -1,5 +1,4 @@
 import { Category } from "../../../DB/models/category.model.js";
-import { Transactions } from "../../../DB/models/transactions.model.js";
 import { ApiFeature } from "../../utils/API.Feature.js";
 import { AppError } from "../../utils/AppError.js";
 import { catchError } from "../../utils/catchError.js";
@@ -27,12 +26,12 @@ export const getMyCategory = catchError(async (req, res, next) => {
      // Get response details from ApiFeature
      const responseDetails = await apiFeature.getResponseDetails();
 
-    console.log("Data retrieved from database:", categories);
+    console.log("Data retrieved from database:", data);
 
     res.status(200).json({ message: "Data retrieved successfully", 
     meta: responseDetails,
     count : totalCount,
-    data: apiFeature });    
+    data: categories });    
      });
 
 
@@ -73,7 +72,7 @@ export const addItemsToCategory = catchError(async (req, res, next) => {
     const data = await Category.create({
         user: req.user._id,
         name,
-        items: req.body.items,
+        items: [],
     });
 
     console.log("Data saved in database:", data);
