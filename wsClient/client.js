@@ -1,4 +1,5 @@
-
+import dotenv from "dotenv";
+dotenv.config();
 import WebSocket from 'ws';
 
 // وصلّي على WebSocket server

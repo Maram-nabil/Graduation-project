@@ -289,3 +289,23 @@
 [12/24/2025, 3:44:48 AM] [SERVER] Server listening on port 3001!
 [12/24/2025, 3:44:48 AM] [DB_CONNECTION] Database connected successfully!
 [12/24/2025, 3:47:20 AM] Client connected
+[12/24/2025, 11:12:38 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/24/2025, 11:12:38 PM] [MULTER_SETUP] Start: destination=voice
+[12/24/2025, 11:12:38 PM] [MULTER_SETUP] Multer configuration completed.
+[12/24/2025, 11:12:38 PM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[12/24/2025, 11:12:38 PM] [MULTER_SETUP] Start: destination=OCR
+[12/24/2025, 11:12:38 PM] [MULTER_SETUP] Multer configuration completed.
+[12/24/2025, 11:12:38 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/24/2025, 11:12:38 PM] [MULTER_SETUP] Start: destination=voice
+[12/24/2025, 11:12:38 PM] [MULTER_SETUP] Multer configuration completed.
+[12/24/2025, 11:12:38 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/24/2025, 11:12:38 PM] [MULTER_SETUP] Start: destination=voice
+[12/24/2025, 11:12:38 PM] [MULTER_SETUP] Multer configuration completed.
+[12/24/2025, 11:12:38 PM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[12/24/2025, 11:12:38 PM] [MULTER_SETUP] Start: destination=OCR
+[12/24/2025, 11:12:38 PM] [MULTER_SETUP] Multer configuration completed.
+[12/24/2025, 11:12:38 PM] [SERVER] Server is starting...
+[12/24/2025, 11:12:38 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[12/24/2025, 11:12:38 PM] [SERVER] Server listening on port 3001!
+[12/24/2025, 11:12:39 PM] [DB_CONNECTION] Database connected successfully!
+[12/25/2025, 12:00:12 AM] Client connected
