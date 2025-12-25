@@ -172,32 +172,127 @@ export const createWithOCR = catchError(async (req, res, next) => {
 
 // Get all transactions with API features
 export const getAllData = catchError(async (req, res, next) => {
-    // Instantiate the ApiFeature class
-
-
     const apiFeature = new ApiFeature(Transactions.find(), req.query);
 
-  apiFeature
-    .filter()
-    .search()
-    .sort()
-    .select()
-    .pagination();
+    apiFeature.filter().search().sort().select().pagination();
 
-  // Execute query - LEAN AFTER ALL MODIFICATIONS 
-  const transactions = await apiFeature.mongooseQuery
-
-  // Calculate total count after base filter (type: creation)
-  const totalCount = await Transactions.countDocuments({ type: "creation" });
-
-  // Get response details from ApiFeature
-  const responseDetails = await apiFeature.getResponseDetails();
+    const transactions = await apiFeature.mongooseQuery;
+    const totalCount = await Transactions.countDocuments();
+    const responseDetails = await apiFeature.getResponseDetails();
 
     res.status(200).json({
         message: "Data retrieved successfully",
         meta: responseDetails,
-        count : totalCount,
+        count: totalCount,
         data: transactions
     });
+});
+
+// Get single transaction
+export const getTransaction = catchError(async (req, res, next) => {
+    const transaction = await Transactions.findOne({
+        _id: req.params.id,
+        user: req.user._id
+    }).populate('category');
+
+    if (!transaction) {
+        return next(new AppError("Transaction not found", 404));
+    }
+
+    res.status(200).json({ message: "Transaction retrieved successfully", data: transaction });
+});
+
+// Get my transactions
+export const getMyTransactions = catchError(async (req, res, next) => {
+    const apiFeature = new ApiFeature(
+        Transactions.find({ user: req.user._id }).populate('category'),
+        req.query
+    );
+
+    apiFeature.filter().search().sort().select().pagination();
+
+    const transactions = await apiFeature.mongooseQuery;
+    const totalCount = await Transactions.countDocuments({ user: req.user._id });
+    const responseDetails = await apiFeature.getResponseDetails();
+
+    res.status(200).json({
+        message: "Transactions retrieved successfully",
+        meta: responseDetails,
+        count: totalCount,
+        data: transactions
+    });
+});
+
+// Get transactions by category
+export const getTransactionsByCategory = catchError(async (req, res, next) => {
+    const { categoryId } = req.params;
+
+    const transactions = await Transactions.find({
+        user: req.user._id,
+        category: categoryId
+    }).populate('category').sort('-createdAt');
+
+    res.status(200).json({
+        message: "Transactions retrieved successfully",
+        count: transactions.length,
+        data: transactions
+    });
+});
+
+// Get transactions by date range
+export const getTransactionsByDateRange = catchError(async (req, res, next) => {
+    const { startDate, endDate } = req.query;
+
+    if (!startDate || !endDate) {
+        return next(new AppError("Start date and end date are required", 400));
+    }
+
+    const transactions = await Transactions.find({
+        user: req.user._id,
+        createdAt: {
+            $gte: new Date(startDate),
+            $lte: new Date(endDate)
+        }
+    }).populate('category').sort('-createdAt');
+
+    const totalAmount = transactions.reduce((sum, t) => sum + (t.price || 0), 0);
+
+    res.status(200).json({
+        message: "Transactions retrieved successfully",
+        count: transactions.length,
+        totalAmount,
+        data: transactions
+    });
+});
+
+// Update transaction
+export const updateTransaction = catchError(async (req, res, next) => {
+    const { text, price, category } = req.body;
+
+    const transaction = await Transactions.findOneAndUpdate(
+        { _id: req.params.id, user: req.user._id },
+        { text, price, category },
+        { new: true }
+    ).populate('category');
+
+    if (!transaction) {
+        return next(new AppError("Transaction not found", 404));
+    }
+
+    res.status(200).json({ message: "Transaction updated successfully", data: transaction });
+});
+
+// Delete transaction
+export const deleteTransaction = catchError(async (req, res, next) => {
+    const transaction = await Transactions.findOneAndDelete({
+        _id: req.params.id,
+        user: req.user._id
+    });
+
+    if (!transaction) {
+        return next(new AppError("Transaction not found", 404));
+    }
+
+    res.status(200).json({ message: "Transaction deleted successfully", data: transaction });
 });
 

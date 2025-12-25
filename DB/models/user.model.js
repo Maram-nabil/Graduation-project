@@ -9,7 +9,7 @@ const schema = new mongoose.Schema(
 
     lastName: { type: String, trim: true },
 
-    email: { type: String, trim: true, unique: true },
+    email: { type: String, trim: true, unique: true, lowercase: true },
 
     password: { type: String },
 
@@ -19,12 +19,25 @@ const schema = new mongoose.Schema(
 
     isBlocked: { type: Boolean, default: false },
 
+    role: { type: String, enum: ['customer', 'admin'], default: 'customer' },
+
     OTP: { type: String, match: [/^\d{4,6}$/, "OTP must be a 4 to 6 digit number"], default: null },
 
+    passwordChangedAt: { type: Date },
+
+    avatar: { type: String },
+
+    preferences: {
+      currency: { type: String, default: 'EGP' },
+      language: { type: String, default: 'ar' },
+      notifications: { type: Boolean, default: true }
+    }
   },
   { timestamps: { updatedAt: false }, versionKey: false }
 );
 
+// Indexes
+schema.index({ createdAt: -1 });
 
 // Export User model
 export const User = mongoose.model("User", schema);

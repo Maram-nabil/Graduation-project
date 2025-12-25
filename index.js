@@ -4,27 +4,44 @@ import express from "express";
 import cors from "cors";
 import configDotenv from "dotenv";
 
+// Load environment variables first
+configDotenv.config();
+
 // Local imports - Utils
 import "./src/utils/logger.js"; // Enable logging
 import { handleRuntimeError, handleErrorCode } from "./src/utils/outError.js";
 import { GlobalError } from "./src/utils/GlobalError.js";
 import { URL_Error } from "./src/utils/URL_Catch.js";
 
+// Local imports - Middleware
+import { sanitizeInput, preventNoSQLInjection } from "./src/middleware/sanitize.js";
+import { apiLimiter } from "./src/middleware/rateLimiter.js";
+
 // Local imports - Database & Routes
 import { dbConnection } from "./DB/dbConnection.js";
 import { bootstrap } from "./src/module/bootStrap.js";
-// Load environment variables first
-configDotenv.config();
-
 
 // Initialize Express app
 const app = express();
-const port = process.env.PORT || 3000; // Use environment variable or default to 3000
+const port = process.env.PORT || 3000;
 
-// Middleware setup
-app.use(cors()); // Enable Cross-Origin Resource Sharing
-app.use(express.json()); // Parse incoming JSON requests
-app.use(express.urlencoded({ extended: true })); // Parse incoming URL-encoded data
+// Security Middleware
+app.use(cors({
+    origin: process.env.CORS_ORIGIN || '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'token']
+}));
+
+// Rate limiting
+app.use(apiLimiter);
+
+// Body parsing
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Input sanitization
+app.use(sanitizeInput);
+app.use(preventNoSQLInjection);
 
 // Serve static files
 app.use("/uploads", express.static("src/uploads")); // Serve uploads folder

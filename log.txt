@@ -309,3 +309,40 @@
 [12/24/2025, 11:12:38 PM] [SERVER] Server listening on port 3001!
 [12/24/2025, 11:12:39 PM] [DB_CONNECTION] Database connected successfully!
 [12/25/2025, 12:00:12 AM] Client connected
+[12/25/2025, 5:32:04 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/25/2025, 5:32:04 PM] [MULTER_SETUP] Start: destination=voice
+[12/25/2025, 5:32:04 PM] [MULTER_SETUP] Multer configuration completed.
+[12/25/2025, 5:32:04 PM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[12/25/2025, 5:32:04 PM] [MULTER_SETUP] Start: destination=OCR
+[12/25/2025, 5:32:04 PM] [MULTER_SETUP] Multer configuration completed.
+[12/25/2025, 5:32:04 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/25/2025, 5:32:04 PM] [MULTER_SETUP] Start: destination=voice
+[12/25/2025, 5:32:04 PM] [MULTER_SETUP] Multer configuration completed.
+[12/25/2025, 5:32:04 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/25/2025, 5:32:04 PM] [MULTER_SETUP] Start: destination=voice
+[12/25/2025, 5:32:04 PM] [MULTER_SETUP] Multer configuration completed.
+[12/25/2025, 5:32:04 PM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[12/25/2025, 5:32:04 PM] [MULTER_SETUP] Start: destination=OCR
+[12/25/2025, 5:32:04 PM] [MULTER_SETUP] Multer configuration completed.
+[12/25/2025, 5:32:04 PM] [SERVER] Server is starting...
+[12/25/2025, 5:32:04 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[12/25/2025, 5:32:04 PM] [SERVER] Server listening on port 3001!
+[12/25/2025, 5:32:05 PM] [DB_CONNECTION] Database connected successfully!
+[12/25/2025, 7:28:17 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/25/2025, 7:28:17 PM] [MULTER_SETUP] Start: destination=voice
+[12/25/2025, 7:28:17 PM] [MULTER_SETUP] Multer configuration completed.
+[12/25/2025, 7:28:17 PM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[12/25/2025, 7:28:17 PM] [MULTER_SETUP] Start: destination=OCR
+[12/25/2025, 7:28:17 PM] [MULTER_SETUP] Multer configuration completed.
+[12/25/2025, 7:28:20 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/25/2025, 7:28:20 PM] [MULTER_SETUP] Start: destination=voice
+[12/25/2025, 7:28:20 PM] [MULTER_SETUP] Multer configuration completed.
+[12/25/2025, 7:28:20 PM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[12/25/2025, 7:28:20 PM] [MULTER_SETUP] Start: destination=OCR
+[12/25/2025, 7:28:20 PM] [MULTER_SETUP] Multer configuration completed.
+[12/25/2025, 7:28:22 PM] [SERVER] Server is starting...
+[12/25/2025, 7:28:22 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[12/25/2025, 7:28:22 PM] [ERROR] (node:13020) [MONGOOSE] Warning: Duplicate schema index on {"email":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[12/25/2025, 7:28:22 PM] [SERVER] Server listening on port 3001!
+[12/25/2025, 7:28:23 PM] [DB_CONNECTION] Database connected successfully!

@@ -240,6 +240,75 @@ const googleCallback = [
 ];
 
 
+// Function: Get user profile
+const getProfile = catchError(async (req, res, next) => {
+    console.log('[getProfile] START', { userId: req.user._id });
+    const user = await User.findById(req.user._id).select('-password -OTP');
+    if (!user) {
+        return next(new AppError('User not found', 404));
+    }
+    res.status(200).json({ message: 'Profile retrieved successfully', user });
+});
+
+// Function: Update user profile
+const updateProfile = catchError(async (req, res, next) => {
+    console.log('[updateProfile] START', { userId: req.user._id, body: req.body });
+    const allowedFields = ['firstName', 'lastName', 'fullname', 'phone'];
+    const updates = {};
+    
+    allowedFields.forEach(field => {
+        if (req.body[field] !== undefined) {
+            updates[field] = req.body[field];
+        }
+    });
+
+    if (updates.firstName || updates.lastName) {
+        const firstName = updates.firstName || req.user.firstName;
+        const lastName = updates.lastName || req.user.lastName;
+        updates.fullname = `${firstName} ${lastName}`;
+    }
+
+    const user = await User.findByIdAndUpdate(req.user._id, updates, { new: true }).select('-password -OTP');
+    
+    if (!user) {
+        return next(new AppError('User not found', 404));
+    }
+    
+    console.log('[updateProfile] SUCCESS', { userId: user._id });
+    res.status(200).json({ message: 'Profile updated successfully', user });
+});
+
+// Function: Delete user account
+const deleteAccount = catchError(async (req, res, next) => {
+    console.log('[deleteAccount] START', { userId: req.user._id });
+    
+    const { password } = req.body;
+    if (!password) {
+        return next(new AppError('Password is required to delete account', 400));
+    }
+
+    const user = await User.findById(req.user._id);
+    if (!bcrypt.compareSync(password, user.password)) {
+        return next(new AppError('Invalid password', 401));
+    }
+
+    // Import models to delete related data
+    const { Transactions } = await import('../../../DB/models/transactions.model.js');
+    const { Category } = await import('../../../DB/models/category.model.js');
+    const { Item } = await import('../../../DB/models/item.model.js');
+
+    // Delete all user data
+    await Promise.all([
+        Transactions.deleteMany({ user: req.user._id }),
+        Category.deleteMany({ user: req.user._id }),
+        Item.deleteMany({ user: req.user._id }),
+        User.findByIdAndDelete(req.user._id)
+    ]);
+
+    console.log('[deleteAccount] SUCCESS', { userId: req.user._id });
+    res.status(200).json({ message: 'Account deleted successfully' });
+});
+
 export {
     signupAndSendOtp,
     changePassword,
@@ -249,5 +318,8 @@ export {
     setNewPassword,
     resendOtp,
     googleAuth,
-    googleCallback
+    googleCallback,
+    getProfile,
+    updateProfile,
+    deleteAccount
 };

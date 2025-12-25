@@ -7,19 +7,35 @@ const schema = new mongoose.Schema(
       type: Types.ObjectId,
       ref: "User",
       required: true,
+      index: true
     },
     name: { 
       type: String,
+      required: true,
+      trim: true
     },
-    price : { 
+    price: { 
+      type: Number,
+      default: 0
+    },
+    description: {
       type: String,
+      trim: true
     },
+    isActive: {
+      type: Boolean,
+      default: true
+    }
   },
   { 
-    timestamps: { updatedAt: false }, // Disables updatedAt field
-    versionKey: false // Disables the versionKey (__v)
+    timestamps: true,
+    versionKey: false
   }
 );
 
+// Index for searching items
+schema.index({ user: 1, name: 1 });
+schema.index({ name: 'text' });
+
 // Create and export the Item model
-export const Item = mongoose.model("Item", schema); // Export the Item model
+export const Item = mongoose.model("Item", schema);

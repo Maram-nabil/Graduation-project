@@ -7,25 +7,43 @@ const schema = new mongoose.Schema(
       type: Types.ObjectId,
       ref: "User",
       required: true,
+      index: true
     },
     name: { 
-      type: String, // [ "food", "drink", "snack", "other" ]
+      type: String,
+      required: true,
+      trim: true
     },
     items: { 
       type: [Types.ObjectId],
       ref: "Item",
-      default: [],
+      default: []
     },
     color: { 
       type: String,
       default: "#ffffff"
     },
+    icon: {
+      type: String,
+      default: "category"
+    },
+    budget: {
+      type: Number,
+      default: 0
+    },
+    isDefault: {
+      type: Boolean,
+      default: false
+    }
   },
   { 
-    timestamps: { updatedAt: false }, // Disables updatedAt field
-    versionKey: false // Disables the versionKey (__v)
+    timestamps: true,
+    versionKey: false
   }
 );
 
+// Compound index for unique category name per user
+schema.index({ user: 1, name: 1 }, { unique: true });
+
 // Create and export the Category model
-export const Category = mongoose.model("Category", schema); // Export the Category model
+export const Category = mongoose.model("Category", schema);

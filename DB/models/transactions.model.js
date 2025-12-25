@@ -4,38 +4,62 @@ import mongoose, { Types } from "mongoose";
 const schema = new mongoose.Schema(
   {
     user: { 
-      type: Types.ObjectId, // User ID
-      ref: "User", // Reference to User model
-      required: [true, "user is required"], // User ID is required 
+      type: Types.ObjectId,
+      ref: "User",
+      required: [true, "user is required"],
+      index: true
     },
 
     category: { 
-      type: Types.ObjectId, // Category ID
-      ref: "Category", // Reference to Category model
+      type: Types.ObjectId,
+      ref: "Category",
+      index: true
     },
 
     price: { 
       type: Number,
+      default: 0
     },
 
     text: { 
       type: String,
+      trim: true
     },
 
     OCR_path: { 
-      type: String,
+      type: String
     },
     
     voice_path: { 
-      type: String,
+      type: String
     },
 
+    type: {
+      type: String,
+      enum: ['expense', 'income'],
+      default: 'expense'
+    },
+
+    notes: {
+      type: String,
+      trim: true
+    },
+
+    isDeleted: {
+      type: Boolean,
+      default: false
+    }
   },
   { 
-    timestamps: { updatedAt: false }, // Disables updatedAt field
-    versionKey: false // Disables the versionKey (__v)
+    timestamps: true,
+    versionKey: false
   }
 );
 
-// Create and export the Transactions  model
-export const Transactions  = mongoose.model("Transactions", schema); // Export the Transactions  model
+// Indexes
+schema.index({ user: 1, createdAt: -1 });
+schema.index({ user: 1, category: 1 });
+schema.index({ createdAt: -1 });
+
+// Create and export the Transactions model
+export const Transactions = mongoose.model("Transactions", schema);
