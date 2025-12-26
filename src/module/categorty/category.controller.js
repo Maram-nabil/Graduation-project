@@ -1,6 +1,6 @@
-import { Category } from "../../../DB/models/category.model.js";
-import { Item } from "../../../DB/models/item.model.js";
-import { Transactions } from "../../../DB/models/transactions.model.js";
+import { Category } from "../../DB/models/category.model.js";
+import { Item } from "../../DB/models/item.model.js";
+import { Transactions } from "../../DB/models/transactions.model.js";
 import { ApiFeature } from "../../utils/API.Feature.js";
 import { AppError } from "../../utils/AppError.js";
 import { catchError } from "../../utils/catchError.js";

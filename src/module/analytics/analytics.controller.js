@@ -1,5 +1,5 @@
-import { Transactions } from "../../../DB/models/transactions.model.js";
-import { Category } from "../../../DB/models/category.model.js";
+import { Transactions } from "../../DB/models/transactions.model.js";
+import { Category } from "../../DB/models/category.model.js";
 import { AppError } from "../../utils/AppError.js";
 import { catchError } from "../../utils/catchError.js";
 

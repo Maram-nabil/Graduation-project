@@ -18,7 +18,7 @@ import { sanitizeInput, preventNoSQLInjection } from "./src/middleware/sanitize.
 import { apiLimiter } from "./src/middleware/rateLimiter.js";
 
 // Local imports - Database & Routes
-import { dbConnection } from "./DB/dbConnection.js";
+import { dbConnection } from "./src/DB/dbConnection.js";
 import { bootstrap } from "./src/module/bootStrap.js";
 
 // Initialize Express app

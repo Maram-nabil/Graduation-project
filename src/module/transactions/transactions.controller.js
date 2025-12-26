@@ -1,5 +1,5 @@
-import { Category } from "../../../DB/models/category.model.js";
-import { Transactions } from "../../../DB/models/transactions.model.js";
+import { Category } from "../../DB/models/category.model.js";
+import { Transactions } from "../../DB/models/transactions.model.js";
 import { ApiFeature } from "../../utils/API.Feature.js";
 import { AppError } from "../../utils/AppError.js";
 import { catchError } from "../../utils/catchError.js";
@@ -42,7 +42,7 @@ export const createWithText = catchError(async (req, res, next) => {
             const categories = await Category.find({ user: req.user._id }).lean();
             let items = [];
             try {
-                const { Item } = await import("../../../DB/models/item.model.js");
+                const { Item } = await import("../../DB/models/item.model.js");
                 items = await Item.find({ user: req.user._id }).lean();
             } catch (e) { items = []; }
 
@@ -97,7 +97,7 @@ export const createWithVoice = catchError(async (req, res, next) => {
             const categories = await Category.find({ user: req.user._id }).lean();
             let items = [];
             try {
-                const { Item } = await import("../../../DB/models/item.model.js");
+                const { Item } = await import("../../DB/models/item.model.js");
                 items = await Item.find({ user: req.user._id }).lean();
             } catch (e) { items = []; }
 
@@ -152,7 +152,7 @@ export const createWithOCR = catchError(async (req, res, next) => {
             const categories = await Category.find({ user: req.user._id }).lean();
             let items = [];
             try {
-                const { Item } = await import("../../../DB/models/item.model.js");
+                const { Item } = await import("../../DB/models/item.model.js");
                 items = await Item.find({ user: req.user._id }).lean();
             } catch (e) { items = []; }
 

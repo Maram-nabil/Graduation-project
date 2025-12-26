@@ -4,7 +4,7 @@ import configDotenv from 'dotenv';
 import passport from 'passport';
 import { AppError } from '../../utils/AppError.js'; // Custom error handling class
 import { catchError } from '../../utils/catchError.js'; // Error handling middleware
-import { User } from '../../../DB/models/user.model.js';
+import { User } from '../../DB/models/user.model.js';
 
 configDotenv.config();
 
@@ -293,9 +293,9 @@ const deleteAccount = catchError(async (req, res, next) => {
     }
 
     // Import models to delete related data
-    const { Transactions } = await import('../../../DB/models/transactions.model.js');
-    const { Category } = await import('../../../DB/models/category.model.js');
-    const { Item } = await import('../../../DB/models/item.model.js');
+    const { Transactions } = await import('../../DB/models/transactions.model.js');
+    const { Category } = await import('../../DB/models/category.model.js');
+    const { Item } = await import('../../DB/models/item.model.js');
 
     // Delete all user data
     await Promise.all([

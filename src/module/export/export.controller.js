@@ -1,5 +1,5 @@
 import PDFDocument from "pdfkit";
-import { Transactions } from "../../../DB/models/transactions.model.js";
+import { Transactions } from "../../DB/models/transactions.model.js";
 import { AppError } from "../../utils/AppError.js";
 import { catchError } from "../../utils/catchError.js";
 

@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import configDotenv from 'dotenv';
 import { AppError } from '../utils/AppError.js';
 import { catchError } from '../utils/catchError.js';
-import { User } from '../../DB/models/user.model.js';
+import { User } from '../DB/models/user.model.js';
 
 configDotenv.config();
 
