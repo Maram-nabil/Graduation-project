@@ -43,41 +43,59 @@ const sanitizeObject = (obj) => {
  * Middleware to sanitize request body, query, and params
  */
 export const sanitizeInput = (req, res, next) => {
-    if (req.body) {
-        req.body = sanitizeObject(req.body);
+    try {
+        if (req.body && typeof req.body === 'object') {
+            req.body = sanitizeObject(req.body);
+        }
+        
+        if (req.query && typeof req.query === 'object') {
+            const sanitizedQuery = sanitizeObject(req.query);
+            // Create new query object to avoid readonly issues
+            req.query = { ...sanitizedQuery };
+        }
+        
+        if (req.params && typeof req.params === 'object') {
+            req.params = sanitizeObject(req.params);
+        }
+        
+        next();
+    } catch (error) {
+        console.error('[SANITIZE] Error:', error.message);
+        next();
     }
-    
-    if (req.query) {
-        req.query = sanitizeObject(req.query);
-    }
-    
-    if (req.params) {
-        req.params = sanitizeObject(req.params);
-    }
-    
-    next();
 };
 
 /**
  * Prevent NoSQL injection by removing $ operators from user input
  */
 export const preventNoSQLInjection = (req, res, next) => {
-    const removeOperators = (obj) => {
-        if (typeof obj !== 'object' || obj === null) return obj;
-        
-        const cleaned = {};
-        for (const key of Object.keys(obj)) {
-            if (!key.startsWith('$')) {
-                cleaned[key] = typeof obj[key] === 'object' 
-                    ? removeOperators(obj[key]) 
-                    : obj[key];
+    try {
+        const removeOperators = (obj) => {
+            if (typeof obj !== 'object' || obj === null) return obj;
+            
+            const cleaned = {};
+            for (const key of Object.keys(obj)) {
+                if (!key.startsWith('$')) {
+                    cleaned[key] = typeof obj[key] === 'object' 
+                        ? removeOperators(obj[key]) 
+                        : obj[key];
+                }
             }
+            return cleaned;
+        };
+        
+        if (req.body && typeof req.body === 'object') {
+            req.body = removeOperators(req.body);
         }
-        return cleaned;
-    };
-    
-    if (req.body) req.body = removeOperators(req.body);
-    if (req.query) req.query = removeOperators(req.query);
-    
-    next();
+        
+        if (req.query && typeof req.query === 'object') {
+            const cleanedQuery = removeOperators(req.query);
+            req.query = { ...cleanedQuery };
+        }
+        
+        next();
+    } catch (error) {
+        console.error('[NOSQL_INJECTION] Error:', error.message);
+        next();
+    }
 };

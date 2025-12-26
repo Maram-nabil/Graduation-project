@@ -346,3 +346,79 @@
 (Use `node --trace-warnings ...` to show where the warning was created)
 [12/25/2025, 7:28:22 PM] [SERVER] Server listening on port 3001!
 [12/25/2025, 7:28:23 PM] [DB_CONNECTION] Database connected successfully!
+[12/26/2025, 8:42:49 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/26/2025, 8:42:49 PM] [MULTER_SETUP] Start: destination=voice
+[12/26/2025, 8:42:49 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:42:49 PM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[12/26/2025, 8:42:49 PM] [MULTER_SETUP] Start: destination=OCR
+[12/26/2025, 8:42:49 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:42:51 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/26/2025, 8:42:51 PM] [MULTER_SETUP] Start: destination=voice
+[12/26/2025, 8:42:51 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:42:51 PM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[12/26/2025, 8:42:51 PM] [MULTER_SETUP] Start: destination=OCR
+[12/26/2025, 8:42:51 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:42:53 PM] [SERVER] Server is starting...
+[12/26/2025, 8:42:53 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[12/26/2025, 8:42:53 PM] [SERVER] Server listening on port 3001!
+[12/26/2025, 8:42:54 PM] [DB_CONNECTION] Database connected successfully!
+[12/26/2025, 8:43:15 PM] [ERROR] [GLOBAL_ERROR] Handler triggered {"statusCode":500,"message":"Cannot set property query of #<IncomingMessage> which has only a getter","stack":"TypeError: Cannot set property query of #<IncomingMessage> which has only a getter\n    at sanitizeInput (file:///E:/src/Graduation-project/src/middleware/sanitize.js:51:19)\n    at Layer.handleRequest (E:\\src\\Graduation-project\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (E:\\src\\Graduation-project\\node_modules\\router\\index.js:342:13)\n    at E:\\src\\Graduation-project\\node_modules\\router\\index.js:297:9\n    at processParams (E:\\src\\Graduation-project\\node_modules\\router\\index.js:582:12)\n    at next (E:\\src\\Graduation-project\\node_modules\\router\\index.js:291:5)\n    at read (E:\\src\\Graduation-project\\node_modules\\body-parser\\lib\\read.js:54:5)\n    at urlencodedParser (E:\\src\\Graduation-project\\node_modules\\body-parser\\lib\\types\\urlencoded.js:58:5)\n    at Layer.handleRequest (E:\\src\\Graduation-project\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (E:\\src\\Graduation-project\\node_modules\\router\\index.js:342:13)"}
+[12/26/2025, 8:44:50 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/26/2025, 8:44:50 PM] [MULTER_SETUP] Start: destination=voice
+[12/26/2025, 8:44:50 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:44:50 PM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[12/26/2025, 8:44:50 PM] [MULTER_SETUP] Start: destination=OCR
+[12/26/2025, 8:44:50 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:44:50 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/26/2025, 8:44:50 PM] [MULTER_SETUP] Start: destination=voice
+[12/26/2025, 8:44:50 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:44:50 PM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[12/26/2025, 8:44:50 PM] [MULTER_SETUP] Start: destination=OCR
+[12/26/2025, 8:44:50 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:44:50 PM] [SERVER] Server is starting...
+[12/26/2025, 8:44:50 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[12/26/2025, 8:44:50 PM] [SERVER] Server listening on port 3001!
+[12/26/2025, 8:44:51 PM] [DB_CONNECTION] Database connected successfully!
+[12/26/2025, 8:45:10 PM] [ERROR] [GLOBAL_ERROR] Handler triggered {"statusCode":500,"message":"Cannot set property query of #<IncomingMessage> which has only a getter","stack":"TypeError: Cannot set property query of #<IncomingMessage> which has only a getter\n    at sanitizeInput (file:///E:/src/Graduation-project/src/middleware/sanitize.js:51:19)\n    at Layer.handleRequest (E:\\src\\Graduation-project\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (E:\\src\\Graduation-project\\node_modules\\router\\index.js:342:13)\n    at E:\\src\\Graduation-project\\node_modules\\router\\index.js:297:9\n    at processParams (E:\\src\\Graduation-project\\node_modules\\router\\index.js:582:12)\n    at next (E:\\src\\Graduation-project\\node_modules\\router\\index.js:291:5)\n    at read (E:\\src\\Graduation-project\\node_modules\\body-parser\\lib\\read.js:54:5)\n    at urlencodedParser (E:\\src\\Graduation-project\\node_modules\\body-parser\\lib\\types\\urlencoded.js:58:5)\n    at Layer.handleRequest (E:\\src\\Graduation-project\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (E:\\src\\Graduation-project\\node_modules\\router\\index.js:342:13)"}
+[12/26/2025, 8:45:54 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/26/2025, 8:45:54 PM] [MULTER_SETUP] Start: destination=voice
+[12/26/2025, 8:45:54 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:45:54 PM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[12/26/2025, 8:45:54 PM] [MULTER_SETUP] Start: destination=OCR
+[12/26/2025, 8:45:54 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:45:54 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/26/2025, 8:45:54 PM] [MULTER_SETUP] Start: destination=voice
+[12/26/2025, 8:45:54 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:45:54 PM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[12/26/2025, 8:45:54 PM] [MULTER_SETUP] Start: destination=OCR
+[12/26/2025, 8:45:54 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:45:54 PM] [SERVER] Server is starting...
+[12/26/2025, 8:45:54 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[12/26/2025, 8:45:54 PM] [SERVER] Server listening on port 3001!
+[12/26/2025, 8:45:55 PM] [DB_CONNECTION] Database connected successfully!
+[12/26/2025, 8:46:05 PM] [ERROR] [GLOBAL_ERROR] Handler triggered {"statusCode":500,"message":"Cannot set property query of #<IncomingMessage> which has only a getter","stack":"TypeError: Cannot set property query of #<IncomingMessage> which has only a getter\n    at sanitizeInput (file:///E:/src/Graduation-project/src/middleware/sanitize.js:51:19)\n    at Layer.handleRequest (E:\\src\\Graduation-project\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (E:\\src\\Graduation-project\\node_modules\\router\\index.js:342:13)\n    at E:\\src\\Graduation-project\\node_modules\\router\\index.js:297:9\n    at processParams (E:\\src\\Graduation-project\\node_modules\\router\\index.js:582:12)\n    at next (E:\\src\\Graduation-project\\node_modules\\router\\index.js:291:5)\n    at read (E:\\src\\Graduation-project\\node_modules\\body-parser\\lib\\read.js:54:5)\n    at urlencodedParser (E:\\src\\Graduation-project\\node_modules\\body-parser\\lib\\types\\urlencoded.js:58:5)\n    at Layer.handleRequest (E:\\src\\Graduation-project\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (E:\\src\\Graduation-project\\node_modules\\router\\index.js:342:13)"}
+[12/26/2025, 8:47:28 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/26/2025, 8:47:28 PM] [MULTER_SETUP] Start: destination=voice
+[12/26/2025, 8:47:28 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:47:28 PM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[12/26/2025, 8:47:28 PM] [MULTER_SETUP] Start: destination=OCR
+[12/26/2025, 8:47:28 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:47:28 PM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[12/26/2025, 8:47:28 PM] [MULTER_SETUP] Start: destination=voice
+[12/26/2025, 8:47:28 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:47:28 PM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[12/26/2025, 8:47:28 PM] [MULTER_SETUP] Start: destination=OCR
+[12/26/2025, 8:47:28 PM] [MULTER_SETUP] Multer configuration completed.
+[12/26/2025, 8:47:28 PM] [SERVER] Server is starting...
+[12/26/2025, 8:47:28 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[12/26/2025, 8:47:28 PM] [SERVER] Server listening on port 3001!
+[12/26/2025, 8:47:29 PM] [DB_CONNECTION] Database connected successfully!
+[12/26/2025, 8:47:43 PM] [ERROR] [SANITIZE] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[12/26/2025, 8:47:43 PM] [ERROR] [NOSQL_INJECTION] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[12/26/2025, 8:47:53 PM] [ERROR] [SANITIZE] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[12/26/2025, 8:47:53 PM] [ERROR] [NOSQL_INJECTION] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[12/26/2025, 8:48:03 PM] [ERROR] [SANITIZE] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[12/26/2025, 8:48:03 PM] [ERROR] [NOSQL_INJECTION] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[12/26/2025, 8:48:03 PM] [AUTH] Start: GET /category | IP: 127.0.0.1
+[12/26/2025, 8:48:03 PM] [AUTH][DENIED] No token
+[12/26/2025, 8:48:03 PM] [ERROR] [GLOBAL_ERROR] Handler triggered {"statusCode":401,"message":"Missing token..!","stack":"Error: Missing token..!\n    at file:///E:/src/Graduation-project/src/middleware/auth.js:20:21\n    at file:///E:/src/Graduation-project/src/utils/catchError.js:4:7\n    at Layer.handleRequest (E:\\src\\Graduation-project\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (E:\\src\\Graduation-project\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (E:\\src\\Graduation-project\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (E:\\src\\Graduation-project\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (E:\\src\\Graduation-project\\node_modules\\router\\lib\\layer.js:152:17)\n    at E:\\src\\Graduation-project\\node_modules\\router\\index.js:295:15\n    at processParams (E:\\src\\Graduation-project\\node_modules\\router\\index.js:582:12)\n    at next (E:\\src\\Graduation-project\\node_modules\\router\\index.js:291:5)"}
