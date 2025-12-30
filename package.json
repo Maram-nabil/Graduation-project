@@ -1,11 +1,16 @@
 {
   "name": "ecommerce",
   "version": "1.0.0",
-  "description": "# E_Commerce",
-  "main": "index.js",
+  "description": "E-Commerce API Server",
+  "main": "src/server.js",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "start:legacy": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

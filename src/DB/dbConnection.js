@@ -1,23 +1,24 @@
+/**
+ * Legacy Database Connection
+ * Use src/config/database.js for new implementations
+ */
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-// Load environment variables
 dotenv.config();
 
 const MONGO_URI = process.env.MONGO_URI;
 
-// Check for Mongo URI
 if (!MONGO_URI) {
-  console.log("[DB_CONNECTION] Database connection failed: MONGO_URI is missing in environment variables");
-  process.exit(1); // Exit the application if the URI is missing
+  console.log("[DB] MONGO_URI missing");
+  process.exit(1);
 }
 
-// Connect to MongoDB
 export const dbConnection = mongoose.connect(MONGO_URI)
-  .then(() => console.log("[DB_CONNECTION] Database connected successfully!"))
+  .then(() => console.log("[DB] Connected successfully"))
   .catch((error) => {
-    console.log("[DB_CONNECTION] Database connection error:", error.message);
-    process.exit(1); // Exit the application if the connection fails
+    console.log("[DB] Connection error:", error.message);
+    process.exit(1);
   });
 
 
