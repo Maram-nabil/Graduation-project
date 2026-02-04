@@ -8,6 +8,8 @@ import { User } from '../../DB/models/user.model.js';
 
 configDotenv.config();
 
+import { sendOTPEmail, sendPasswordResetEmail, sendWelcomeEmail } from '../../utils/emailService.js';
+
 // Function: Creates a new user account and sends OTP verification email
 const signupAndSendOtp = catchError(async (req, res, next) => {
     console.log('[signupAndSendOtp] START', { body: req.body });
@@ -48,6 +50,19 @@ const signupAndSendOtp = catchError(async (req, res, next) => {
             OTP: otp,
         });
         console.log('[signupAndSendOtp] SUCCESS', { user: user.email, name: user.name });
+
+        // Attempt to send OTP email; do not fail signup if email sending fails
+        try {
+            const mailResult = await sendOTPEmail(user.email, otp, user.name || user.fullname || user.firstName);
+            if (!mailResult.success) {
+                console.error('[signupAndSendOtp] EMAIL ERROR', mailResult.error);
+            } else {
+                console.log('[signupAndSendOtp] EMAIL SENT', mailResult.messageId);
+            }
+        } catch (emailErr) {
+            console.error('[signupAndSendOtp] EMAIL THROW ERROR', emailErr);
+        }
+
         res.json({ message: 'Signup successful, OTP sent to email' });
     } catch (err) {
         console.error('[signupAndSendOtp] ERROR', { error: err, body: req.body });
@@ -66,6 +81,18 @@ const resendOtp = catchError(async (req, res, next) => {
             return next(new AppError('OTP not found', 404));
         }
         console.log('[resendOtp] SUCCESS', { email: userExists.email, otp });
+
+        try {
+            const mailResult = await sendOTPEmail(userExists.email, otp, userExists.name || userExists.fullname || userExists.firstName);
+            if (!mailResult.success) {
+                console.error('[resendOtp] EMAIL ERROR', mailResult.error);
+            } else {
+                console.log('[resendOtp] EMAIL SENT', mailResult.messageId);
+            }
+        } catch (emailErr) {
+            console.error('[resendOtp] EMAIL THROW ERROR', emailErr);
+        }
+
         res.json({ message: 'resend OTP successful, OTP sent to email' });
     } catch (err) {
         console.error('[resendOtp] ERROR', { error: err, body: req.body });
@@ -89,6 +116,18 @@ const configurationOTP = catchError(async (req, res, next) => {
         }
         const token = jwt.sign({ id: user._id, role: user.role, email: user.email }, process.env.JWT_KEY);
         console.log('[configurationOTP] SUCCESS', { user: user.email, token });
+
+        try {
+            const mailResult = await sendWelcomeEmail(user.email, user.name || user.fullname || user.firstName);
+            if (!mailResult.success) {
+                console.error('[configurationOTP] WELCOME EMAIL ERROR', mailResult.error);
+            } else {
+                console.log('[configurationOTP] WELCOME EMAIL SENT', mailResult.messageId);
+            }
+        } catch (emailErr) {
+            console.error('[configurationOTP] WELCOME EMAIL THROW', emailErr);
+        }
+
         res.status(201).json({ message: 'User added successfully', user, token });
     } catch (err) {
         console.error('[configurationOTP] ERROR', { error: err, body: req.body });
@@ -175,6 +214,18 @@ const forgetPassword = catchError(async (req, res, next) => {
         const resetToken = jwt.sign({ id: user._id, name: user.name }, process.env.JWT_KEY);
         const resetLink = `${process.env.DOMAIN_URL}/${user.language}/reset-password?token=${resetToken}`;
         console.log('[forgetPassword] SUCCESS', { email: user.email, resetLink });
+
+        try {
+            const mailResult = await sendPasswordResetEmail(user.email, resetLink, user.name);
+            if (!mailResult.success) {
+                console.error('[forgetPassword] EMAIL ERROR', mailResult.error);
+            } else {
+                console.log('[forgetPassword] EMAIL SENT', mailResult.messageId);
+            }
+        } catch (emailErr) {
+            console.error('[forgetPassword] EMAIL THROW ERROR', emailErr);
+        }
+
         res.status(200).json({ message: 'Password reset email sent successfully' });
     } catch (err) {
         console.error('[forgetPassword] ERROR', { error: err, body: req.body });

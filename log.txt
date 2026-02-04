@@ -438,3 +438,37 @@
 [12/26/2025, 9:05:39 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
 [12/26/2025, 9:05:39 PM] [SERVER] Server listening on port 3001!
 [12/26/2025, 9:05:42 PM] [DB_CONNECTION] Database connected successfully!
+[2/3/2026, 11:13:34 PM] [CONFIG] Configuration validated successfully
+[2/3/2026, 11:13:35 PM] [CONFIG] Configuration validated successfully
+[2/3/2026, 11:13:37 PM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-01.qpmpoxi.mongodb.net
+[2/3/2026, 11:13:37 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/3/2026, 11:13:37 PM] [SERVER] HTTP server running on port 3001
+[2/3/2026, 11:13:37 PM] [SERVER] Environment: development
+[2/3/2026, 11:16:42 PM] [ERROR] [SANITIZE] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2/3/2026, 11:16:42 PM] [ERROR] [NOSQL_INJECTION] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2/3/2026, 11:16:42 PM] [signupAndSendOtp] START {"body":{"firstName":"Maram","lastName":"Nabil","email":"maram+test@example.com","password":"Test1234!","phone":"0104631111","country":"egypt","countryCode":"20"}}
+[2/3/2026, 11:16:43 PM] [CONFIG] Configuration validated successfully
+[2/3/2026, 11:16:44 PM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-02.qpmpoxi.mongodb.net
+[2/3/2026, 11:16:44 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/3/2026, 11:16:44 PM] [SERVER] HTTP server running on port 3001
+[2/3/2026, 11:16:44 PM] [SERVER] Environment: development
+[2/3/2026, 11:16:51 PM] [ERROR] [SANITIZE] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2/3/2026, 11:16:51 PM] [ERROR] [NOSQL_INJECTION] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2/3/2026, 11:16:51 PM] [signupAndSendOtp] START {"body":{"firstName":"Maram","lastName":"Nabil","email":"maram+test@example.com","password":"Test1234!","phone":"0104631111","country":"egypt","countryCode":"20"}}
+[2/3/2026, 11:16:52 PM] [ERROR] [signupAndSendOtp] ERROR: Email already taken {"email":"maram+test@example.com"}
+[2/3/2026, 11:20:31 PM] [ERROR] [SANITIZE] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2/3/2026, 11:20:31 PM] [ERROR] [NOSQL_INJECTION] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2/3/2026, 11:20:31 PM] [resendOtp] START {"body":{"email":"maram+test@example.com"}}
+[2/3/2026, 11:20:31 PM] [resendOtp] SUCCESS {"email":"maram+test@example.com","otp":"913849"}
+[2/4/2026, 11:17:34 PM] [CONFIG] Configuration validated successfully
+[2/4/2026, 11:17:36 PM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-01.qpmpoxi.mongodb.net
+[2/4/2026, 11:17:36 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/4/2026, 11:17:36 PM] [SERVER] HTTP server running on port 3001
+[2/4/2026, 11:17:36 PM] [SERVER] Environment: development
+[2/4/2026, 11:17:55 PM] [SERVER] SIGINT received, shutting down gracefully
+[2/4/2026, 11:17:55 PM] [SERVER] HTTP server closed
+[2/4/2026, 11:18:19 PM] [CONFIG] Configuration validated successfully
+[2/4/2026, 11:18:23 PM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-01.qpmpoxi.mongodb.net
+[2/4/2026, 11:18:23 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/4/2026, 11:18:23 PM] [SERVER] HTTP server running on port 3001
+[2/4/2026, 11:18:23 PM] [SERVER] Environment: development
