@@ -14,13 +14,14 @@ export const getSummary = catchError(async (req, res, next) => {
 
     const [totalTransactions, monthlyTransactions, categories] = await Promise.all([
         Transactions.aggregate([
-            { $match: { user: userId } },
+            { $match: { user: userId, isDeleted: { $ne: true } } },
             { $group: { _id: null, total: { $sum: "$price" }, count: { $sum: 1 } } }
         ]),
         Transactions.aggregate([
             { 
                 $match: { 
                     user: userId,
+                    isDeleted: { $ne: true },
                     createdAt: { $gte: startOfMonth, $lte: endOfMonth }
                 } 
             },
@@ -54,7 +55,7 @@ export const getByCategory = catchError(async (req, res, next) => {
     const userId = req.user._id;
     const { startDate, endDate } = req.query;
 
-    const matchStage = { user: userId };
+    const matchStage = { user: userId, isDeleted: { $ne: true } };
     
     if (startDate && endDate) {
         matchStage.createdAt = {
@@ -142,6 +143,7 @@ export const getByDate = catchError(async (req, res, next) => {
         {
             $match: {
                 user: userId,
+                isDeleted: { $ne: true },
                 createdAt: { $gte: start, $lte: end }
             }
         },
@@ -172,7 +174,7 @@ export const getTopCategories = catchError(async (req, res, next) => {
     const limit = parseInt(req.query.limit) || 5;
 
     const topCategories = await Transactions.aggregate([
-        { $match: { user: userId, category: { $exists: true } } },
+        { $match: { user: userId, isDeleted: { $ne: true }, category: { $exists: true } } },
         {
             $group: {
                 _id: "$category",
@@ -224,11 +226,11 @@ export const getTrends = catchError(async (req, res, next) => {
 
     const [currentMonth, previousMonth] = await Promise.all([
         Transactions.aggregate([
-            { $match: { user: userId, createdAt: { $gte: currentMonthStart, $lte: currentMonthEnd } } },
+            { $match: { user: userId, isDeleted: { $ne: true }, createdAt: { $gte: currentMonthStart, $lte: currentMonthEnd } } },
             { $group: { _id: null, total: { $sum: "$price" }, count: { $sum: 1 } } }
         ]),
         Transactions.aggregate([
-            { $match: { user: userId, createdAt: { $gte: prevMonthStart, $lte: prevMonthEnd } } },
+            { $match: { user: userId, isDeleted: { $ne: true }, createdAt: { $gte: prevMonthStart, $lte: prevMonthEnd } } },
             { $group: { _id: null, total: { $sum: "$price" }, count: { $sum: 1 } } }
         ])
     ]);

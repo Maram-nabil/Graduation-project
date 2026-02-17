@@ -36,9 +36,6 @@ services:
       - key: JWT_KEY
         scope: RUN_TIME
         type: SECRET
-      - key: GROQ_API_KEY
-        scope: RUN_TIME
-        type: SECRET
       - key: EMAIL_USER
         scope: RUN_TIME
         type: SECRET

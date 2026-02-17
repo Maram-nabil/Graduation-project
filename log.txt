@@ -472,3 +472,13 @@
 [2/4/2026, 11:18:23 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
 [2/4/2026, 11:18:23 PM] [SERVER] HTTP server running on port 3001
 [2/4/2026, 11:18:23 PM] [SERVER] Environment: development
+[2/17/2026, 6:56:56 AM] [UPLOAD_SINGLE_FILE] Start: field=voice_path
+[2/17/2026, 6:56:56 AM] [MULTER_SETUP] Start: destination=voice
+[2/17/2026, 6:56:56 AM] [MULTER_SETUP] Multer configuration completed.
+[2/17/2026, 6:56:56 AM] [UPLOAD_SINGLE_FILE] Start: field=OCR_path
+[2/17/2026, 6:56:56 AM] [MULTER_SETUP] Start: destination=OCR
+[2/17/2026, 6:56:56 AM] [MULTER_SETUP] Multer configuration completed.
+[2/17/2026, 6:56:56 AM] [SERVER] Server is starting...
+[2/17/2026, 6:56:56 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/17/2026, 6:56:56 AM] [SERVER] Server listening on port 3001!
+[2/17/2026, 6:56:57 AM] [DB] Connected successfully

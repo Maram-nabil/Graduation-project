@@ -23,7 +23,6 @@ Set these in the DigitalOcean dashboard:
 |----------|----------|-------------|
 | `MONGO_URI` | Yes | MongoDB connection string |
 | `JWT_KEY` | Yes | Secret key for JWT tokens |
-| `GROQ_API_KEY` | No | Groq AI API key |
 | `EMAIL_USER` | No | Email service username |
 | `EMAIL_PASS` | No | Email service password |
 | `CORS_ORIGIN` | No | Allowed CORS origins |

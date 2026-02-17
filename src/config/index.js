@@ -24,11 +24,6 @@ export const config = {
   wsPort: parseInt(process.env.WS_PORT, 10) || 3002,
   wsUrl: process.env.WS_URL || 'ws://localhost:3002',
   
-  // External Services
-  analysisUrl: process.env.ANALYSIS_URL || 'http://127.0.0.1:8000/analyze',
-  aiUrl: process.env.AI_URL || 'http://127.0.0.1:8000',
-  groqApiKey: process.env.GROQ_API_KEY,
-  
   // Email
   email: {
     service: process.env.EMAIL_SERVICE || 'gmail',
