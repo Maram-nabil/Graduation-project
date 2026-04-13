@@ -197,3 +197,25 @@ export async function getPersonalizedOffers(userIdHex) {
 export function isValidUserId(userId) {
   return typeof userId === "string" && Types.ObjectId.isValid(userId);
 }
+
+/**
+ * Admin: snapshot of cached Amazon offer payloads (in-memory NodeCache).
+ * @returns {{ entries: Array<{ cacheKey: string, amazonCategoryId: string | null, productCount: number, products: ReturnType<typeof mapProduct>[] }>, stats: ReturnType<NodeCache["getStats"]> }}
+ */
+export function getOffersCacheAdminSnapshot() {
+  const keys = offersCache.keys();
+  const entries = keys.map((k) => {
+    const products = offersCache.get(k) || [];
+    const amazonCategoryId = k.startsWith("amazon-offers:") ? k.slice("amazon-offers:".length) : null;
+    return {
+      cacheKey: k,
+      amazonCategoryId,
+      productCount: Array.isArray(products) ? products.length : 0,
+      products: Array.isArray(products) ? products : []
+    };
+  });
+  return {
+    entries,
+    stats: offersCache.getStats()
+  };
+}

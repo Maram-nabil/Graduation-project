@@ -40,6 +40,10 @@ const protectedRoutes = catchError(async (req, res, next) => {
             if(flag_login) console.log(`[AUTH][DENIED] Blocked user: ${user.name}`);
             return next(new AppError('User is blocked..!', 401));
         }
+        if (user.isDeleted) {
+            if(flag_login) console.log(`[AUTH][DENIED] Deleted user account`);
+            return next(new AppError('Account no longer available..!', 401));
+        }
         if (!user.confEmail) {
             if(flag_login) console.log(`[AUTH][DENIED] Email not confirmed: ${user.name}`);
             return next(new AppError('Email not confirmed..!', 401));

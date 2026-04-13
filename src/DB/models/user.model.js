@@ -19,6 +19,8 @@ const schema = new mongoose.Schema(
 
     isBlocked: { type: Boolean, default: false },
 
+    isDeleted: { type: Boolean, default: false },
+
     role: { type: String, enum: ['customer', 'admin'], default: 'customer' },
 
     OTP: { type: String, match: [/^\d{4,6}$/, "OTP must be a 4 to 6 digit number"], default: null },

@@ -5,6 +5,7 @@ import { itemsRouter } from "./items/items.routes.js";
 import { analyticsRouter } from "./analytics/analytics.routes.js";
 import { exportRouter } from "./export/export.routes.js";
 import { offersRouter } from "./offers/offer.routes.js";
+import { adminRouter } from "./admin/admin.routes.js";
 
 export const bootstrap = (app) => {
     // Auth routes
@@ -21,4 +22,7 @@ export const bootstrap = (app) => {
     
     // Amazon deals (personalized by top spending category)
     app.use("/api/offers", offersRouter);
+
+    // Admin dashboard
+    app.use("/admin", adminRouter);
 };
