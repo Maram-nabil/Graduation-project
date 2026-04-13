@@ -40,6 +40,27 @@ const sanitizeObject = (obj) => {
 };
 
 /**
+ * Merge a plain sanitized object into a target Express may expose as read-only
+ * on `req` (getter-only `req.query` / `req.params`). Mutate `target` in place.
+ * @param {Record<string, unknown>} target
+ * @param {Record<string, unknown>} source
+ */
+function mergeIntoRequestDict(target, source) {
+    if (!target || typeof target !== 'object' || !source || typeof source !== 'object') {
+        return;
+    }
+    const prevKeys = Object.keys(target);
+    for (const key of prevKeys) {
+        if (!Object.prototype.hasOwnProperty.call(source, key)) {
+            delete target[key];
+        }
+    }
+    for (const [key, value] of Object.entries(source)) {
+        target[key] = value;
+    }
+}
+
+/**
  * Middleware to sanitize request body, query, and params
  */
 export const sanitizeInput = (req, res, next) => {
@@ -49,13 +70,11 @@ export const sanitizeInput = (req, res, next) => {
         }
         
         if (req.query && typeof req.query === 'object') {
-            const sanitizedQuery = sanitizeObject(req.query);
-            // Create new query object to avoid readonly issues
-            req.query = { ...sanitizedQuery };
+            mergeIntoRequestDict(req.query, sanitizeObject(req.query));
         }
         
         if (req.params && typeof req.params === 'object') {
-            req.params = sanitizeObject(req.params);
+            mergeIntoRequestDict(req.params, sanitizeObject(req.params));
         }
         
         next();
@@ -89,8 +108,7 @@ export const preventNoSQLInjection = (req, res, next) => {
         }
         
         if (req.query && typeof req.query === 'object') {
-            const cleanedQuery = removeOperators(req.query);
-            req.query = { ...cleanedQuery };
+            mergeIntoRequestDict(req.query, removeOperators(req.query));
         }
         
         next();

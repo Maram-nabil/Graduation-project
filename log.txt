@@ -482,3 +482,224 @@
 [2/17/2026, 6:56:56 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
 [2/17/2026, 6:56:56 AM] [SERVER] Server listening on port 3001!
 [2/17/2026, 6:56:57 AM] [DB] Connected successfully
+[2/21/2026, 6:39:32 AM] [CONFIG] Configuration validated successfully
+[2/21/2026, 6:39:33 AM] [CONFIG] Configuration validated successfully
+[2/21/2026, 6:39:34 AM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-00.qpmpoxi.mongodb.net
+[2/21/2026, 6:39:34 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/21/2026, 6:39:34 AM] [SERVER] HTTP server running on port 3001
+[2/21/2026, 6:39:34 AM] [SERVER] Environment: development
+[2/21/2026, 6:41:08 AM] [CONFIG] Configuration validated successfully
+[2/21/2026, 6:41:09 AM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-01.qpmpoxi.mongodb.net
+[2/21/2026, 6:41:09 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/21/2026, 6:41:09 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"::","port":3002}
+[2/21/2026, 6:41:09 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"0.0.0.0","port":3001}
+[2/21/2026, 6:42:44 AM] [CONFIG] Configuration validated successfully
+[2/21/2026, 6:42:44 AM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-02.qpmpoxi.mongodb.net
+[2/21/2026, 6:42:44 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/21/2026, 6:42:44 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"::","port":3002}
+[2/21/2026, 6:42:44 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"0.0.0.0","port":3001}
+[2/21/2026, 6:45:31 AM] [CONFIG] Configuration validated successfully
+[2/21/2026, 6:45:31 AM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-01.qpmpoxi.mongodb.net
+[2/21/2026, 6:45:31 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/21/2026, 6:45:31 AM] [SERVER] HTTP server running on port 3001
+[2/21/2026, 6:45:31 AM] [SERVER] Environment: development
+[2/21/2026, 6:46:43 AM] [ERROR] [SANITIZE] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2/21/2026, 6:46:43 AM] [ERROR] [NOSQL_INJECTION] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2/21/2026, 6:46:43 AM] [URL_ERROR] 404 - Route not found -> /
+[2/21/2026, 6:46:43 AM] [ERROR] [SANITIZE] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2/21/2026, 6:46:43 AM] [ERROR] [NOSQL_INJECTION] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2/21/2026, 6:46:43 AM] [URL_ERROR] 404 - Route not found -> /favicon.ico
+[2/21/2026, 6:55:32 AM] [CONFIG] Configuration validated successfully
+[2/21/2026, 6:55:33 AM] [CONFIG] Configuration validated successfully
+[2/21/2026, 6:55:34 AM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-00.qpmpoxi.mongodb.net
+[2/21/2026, 6:55:34 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/21/2026, 6:55:34 AM] [SERVER] HTTP server running on port 3001
+[2/21/2026, 6:55:34 AM] [SERVER] Environment: development
+[2/21/2026, 6:56:43 AM] [CONFIG] Configuration validated successfully
+[2/21/2026, 6:56:44 AM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-00.qpmpoxi.mongodb.net
+[2/21/2026, 6:56:44 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/21/2026, 6:56:44 AM] [SERVER] HTTP server running on port 3001
+[2/21/2026, 6:56:44 AM] [SERVER] Environment: development
+[2/21/2026, 6:56:52 AM] [CONFIG] Configuration validated successfully
+[2/21/2026, 6:56:53 AM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-02.qpmpoxi.mongodb.net
+[2/21/2026, 6:56:53 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/21/2026, 6:56:53 AM] [SERVER] HTTP server running on port 3001
+[2/21/2026, 6:56:53 AM] [SERVER] Environment: development
+[2/21/2026, 6:57:14 AM] [CONFIG] Configuration validated successfully
+[2/21/2026, 6:57:14 AM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-00.qpmpoxi.mongodb.net
+[2/21/2026, 6:57:14 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/21/2026, 6:57:15 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"::","port":3002}
+[2/21/2026, 6:57:15 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"0.0.0.0","port":3001}
+[2/21/2026, 7:03:43 AM] [CONFIG] Configuration validated successfully
+[2/21/2026, 7:03:43 AM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-00.qpmpoxi.mongodb.net
+[2/21/2026, 7:03:43 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/21/2026, 7:03:43 AM] [SERVER] HTTP server running on port 3001
+[2/21/2026, 7:03:43 AM] [SERVER] Environment: development
+[2/21/2026, 7:47:12 AM] [DB] Disconnected from MongoDB
+[2/21/2026, 7:47:12 AM] [DB] Disconnected from MongoDB
+[2/21/2026, 7:49:19 AM] [CONFIG] Configuration validated successfully
+[2/21/2026, 7:49:20 AM] [CONFIG] Configuration validated successfully
+[2/21/2026, 7:49:21 AM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-01.qpmpoxi.mongodb.net
+[2/21/2026, 7:49:21 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/21/2026, 7:49:21 AM] [SERVER] HTTP server running on port 3001
+[2/21/2026, 7:49:21 AM] [SERVER] Environment: development
+[2/21/2026, 7:57:34 AM] [CONFIG] Configuration validated successfully
+[2/21/2026, 7:57:36 AM] [DB] Connected to MongoDB: ac-sm5o6s5-shard-00-01.qpmpoxi.mongodb.net
+[2/21/2026, 7:57:36 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[2/21/2026, 7:57:36 AM] [SERVER] HTTP server running on port 3001
+[2/21/2026, 7:57:36 AM] [SERVER] Environment: development
+[4/2/2026, 5:45:45 PM] [SERVER] Server is starting...
+[4/2/2026, 5:45:45 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/2/2026, 5:45:45 PM] [SERVER] Server listening on port 3001!
+[4/2/2026, 5:46:15 PM] [DB] Connection error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+[4/2/2026, 7:05:00 PM] [SERVER] Server is starting...
+[4/2/2026, 7:05:00 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/2/2026, 7:05:00 PM] [SERVER] Server listening on port 3001!
+[4/2/2026, 9:22:20 PM] [SERVER] Server is starting...
+[4/2/2026, 9:22:21 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/2/2026, 9:22:21 PM] [SERVER] Server listening on port 3001!
+[4/2/2026, 9:22:22 PM] [DB] Connected successfully
+[4/2/2026, 9:38:21 PM] [ERROR] [SANITIZE] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[4/2/2026, 9:38:21 PM] [ERROR] [NOSQL_INJECTION] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[4/2/2026, 9:38:21 PM] [signupAndSendOtp] START {"body":{"firstName":"Maram","lastName":"Nabil","email":"maram+test@example.com","password":"Test1234!","phone":"0104631111","country":"egypt","countryCode":"20"}}
+[4/2/2026, 9:38:21 PM] [signupAndSendOtp] SUCCESS {"user":"maram+test@example.com"}
+[4/2/2026, 9:38:23 PM] [EMAIL] Message sent: <ef5ed3e4-d281-4797-a163-5d98d9b53073@gmail.com>
+[4/2/2026, 9:38:23 PM] [signupAndSendOtp] EMAIL SENT <ef5ed3e4-d281-4797-a163-5d98d9b53073@gmail.com>
+[4/3/2026, 4:28:33 AM] [SERVER] Server is starting...
+[4/3/2026, 4:28:33 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/3/2026, 4:28:33 AM] [SERVER] Server listening on port 3001!
+[4/5/2026, 7:36:15 PM] [SERVER] Server is starting...
+[4/5/2026, 7:36:15 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/5/2026, 7:36:15 PM] [SERVER] Server listening on port 3001!
+[4/5/2026, 7:36:16 PM] [DB] Connected successfully
+[4/5/2026, 8:19:35 PM] [SERVER] Server is starting...
+[4/5/2026, 8:19:35 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/5/2026, 8:19:35 PM] [SERVER] Server listening on port 3001!
+[4/5/2026, 8:19:36 PM] [DB] Connected successfully
+[4/5/2026, 8:19:40 PM] [SERVER] Server is starting...
+[4/5/2026, 8:19:40 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/5/2026, 8:19:40 PM] [SERVER] Server listening on port 3001!
+[4/5/2026, 8:19:40 PM] [DB] Connected successfully
+[4/5/2026, 8:49:56 PM] [ERROR] [SANITIZE] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[4/5/2026, 8:49:56 PM] [ERROR] [NOSQL_INJECTION] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[4/5/2026, 9:03:00 PM] [SERVER] Server is starting...
+[4/5/2026, 9:03:00 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/5/2026, 9:03:00 PM] [SERVER] Server listening on port 3001!
+[4/5/2026, 9:03:01 PM] [DB] Connected successfully
+[4/10/2026, 7:36:46 PM] [CONFIG] Configuration validated successfully
+[4/10/2026, 7:37:21 PM] [SERVER] Server is starting...
+[4/10/2026, 7:37:21 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/10/2026, 7:37:21 PM] [SERVER] Server listening on port 3001!
+[4/10/2026, 7:37:51 PM] [DB] Connection error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+[4/10/2026, 7:42:41 PM] [SERVER] Server is starting...
+[4/10/2026, 7:42:41 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/10/2026, 7:42:41 PM] [SERVER] Server listening on port 3001!
+[4/10/2026, 7:42:42 PM] [DB] Connected successfully
+[4/11/2026, 3:26:54 AM] [SERVER] Server is starting...
+[4/11/2026, 3:26:54 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/11/2026, 3:26:54 AM] [SERVER] Server listening on port 3001!
+[4/11/2026, 3:26:54 AM] [DB] Connected successfully
+[4/12/2026, 5:38:36 AM] [SERVER] Server is starting...
+[4/12/2026, 5:38:36 AM] [SERVER] Server is starting...
+[4/12/2026, 5:38:36 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 5:38:36 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 5:38:36 AM] [SERVER] Server listening on port 3001!
+[4/12/2026, 5:38:36 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"::","port":3002}
+[4/12/2026, 5:38:36 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"0.0.0.0","port":3001}
+[4/12/2026, 5:39:06 AM] [DB] Connection error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+[4/12/2026, 5:39:06 AM] [DB] Connection error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+[4/12/2026, 5:39:42 AM] [SERVER] Server is starting...
+[4/12/2026, 5:39:43 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 5:39:43 AM] [SERVER] Server listening on port 3001!
+[4/12/2026, 5:40:13 AM] [DB] Connection error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+[4/12/2026, 5:47:34 AM] [SERVER] Server is starting...
+[4/12/2026, 5:47:34 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 5:47:34 AM] [SERVER] Server listening on port 3001!
+[4/12/2026, 5:47:35 AM] [DB] Connected successfully
+[4/12/2026, 5:48:38 AM] [SERVER] Server is starting...
+[4/12/2026, 5:48:38 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 5:48:38 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"::","port":3002}
+[4/12/2026, 5:48:38 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"0.0.0.0","port":3001}
+[4/12/2026, 5:48:39 AM] [DB] Connected successfully
+[4/12/2026, 5:50:22 AM] [CONFIG] Configuration validated successfully
+[4/12/2026, 5:50:23 AM] [DB] Connected to MongoDB: ac-wtmeu0g-shard-00-00.a0leflb.mongodb.net
+[4/12/2026, 5:50:23 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 5:50:23 AM] [SERVER] HTTP server running on port 3001
+[4/12/2026, 5:50:23 AM] [SERVER] Environment: development
+[4/12/2026, 5:51:31 AM] [SERVER] SIGINT received, shutting down gracefully
+[4/12/2026, 5:51:56 AM] [SERVER] Server is starting...
+[4/12/2026, 5:51:56 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 5:51:56 AM] [SERVER] Server listening on port 3001!
+[4/12/2026, 5:51:57 AM] [DB] Connected successfully
+[4/12/2026, 5:53:24 AM] [ERROR] [SANITIZE] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[4/12/2026, 5:53:24 AM] [ERROR] [NOSQL_INJECTION] Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[4/12/2026, 5:56:33 AM] [SERVER] Server is starting...
+[4/12/2026, 5:56:33 AM] [SERVER] Server is starting...
+[4/12/2026, 5:56:33 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 5:56:33 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 5:56:33 AM] [SERVER] Server listening on port 3001!
+[4/12/2026, 5:56:33 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"::","port":3002}
+[4/12/2026, 5:56:33 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"0.0.0.0","port":3001}
+[4/12/2026, 5:56:34 AM] [DB] Connected successfully
+[4/12/2026, 5:56:34 AM] [DB] Connected successfully
+[4/12/2026, 5:56:35 AM] [SERVER] Server is starting...
+[4/12/2026, 5:56:35 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 5:56:35 AM] [SERVER] Server is starting...
+[4/12/2026, 5:56:35 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 5:56:35 AM] [SERVER] Server listening on port 3001!
+[4/12/2026, 5:56:35 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"::","port":3002}
+[4/12/2026, 5:56:35 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"0.0.0.0","port":3001}
+[4/12/2026, 5:56:36 AM] [DB] Connected successfully
+[4/12/2026, 5:56:36 AM] [DB] Connected successfully
+[4/12/2026, 5:59:19 AM] [SERVER] Server is starting...
+[4/12/2026, 5:59:19 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 5:59:19 AM] [SERVER] Server listening on port 3001!
+[4/12/2026, 5:59:20 AM] [DB] Connected successfully
+[4/12/2026, 6:01:31 AM] [URL_ERROR] 404 - Route not found -> /health
+[4/12/2026, 6:06:11 AM] [SERVER] Server is starting...
+[4/12/2026, 6:06:11 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 6:06:11 AM] [SERVER] Server is starting...
+[4/12/2026, 6:06:11 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 6:06:11 AM] [SERVER] Server listening on port 3001!
+[4/12/2026, 6:06:11 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"::","port":3002}
+[4/12/2026, 6:06:11 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"0.0.0.0","port":3001}
+[4/12/2026, 6:06:12 AM] [DB] Connected successfully
+[4/12/2026, 6:06:12 AM] [DB] Connected successfully
+[4/12/2026, 6:06:16 AM] [SERVER] Server is starting...
+[4/12/2026, 6:06:16 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 6:06:16 AM] [SERVER] Server listening on port 3001!
+[4/12/2026, 6:06:16 AM] [SERVER] Server is starting...
+[4/12/2026, 6:06:16 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 6:06:16 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"::","port":3002}
+[4/12/2026, 6:06:16 AM] [ERROR_HANDLER] Error in Code: {"code":"EADDRINUSE","errno":-4091,"syscall":"listen","address":"0.0.0.0","port":3001}
+[4/12/2026, 6:06:17 AM] [DB] Connected successfully
+[4/12/2026, 6:06:17 AM] [DB] Connected successfully
+[4/12/2026, 6:07:21 AM] [SERVER] Server is starting...
+[4/12/2026, 6:07:21 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 6:07:21 AM] [SERVER] Server listening on port 3001!
+[4/12/2026, 6:07:22 AM] [DB] Connected successfully
+[4/12/2026, 6:07:30 AM] [ERROR] [OFFERS ERROR] {"statusCode":502}
+[4/12/2026, 6:07:33 AM] [ERROR] [OFFERS ERROR] {"statusCode":502}
+[4/12/2026, 6:11:34 AM] [SERVER] Server is starting...
+[4/12/2026, 6:11:35 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 6:11:35 AM] [SERVER] Server listening on port 3001!
+[4/12/2026, 6:11:35 AM] [DB] Connected successfully
+[4/12/2026, 6:11:38 AM] [SERVER] Server is starting...
+[4/12/2026, 6:11:39 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 6:11:39 AM] [SERVER] Server listening on port 3001!
+[4/12/2026, 6:11:39 AM] [DB] Connected successfully
+[4/12/2026, 6:11:54 AM] [AMAZON API ERROR] Status: 400
+[4/12/2026, 6:11:54 AM] [AMAZON API ERROR] Data: {"status":"ERROR","request_id":"ba25a5ba-f6b6-4924-9fe8-0357d29622ac","error":{"message":"The deals_and_discounts parameter should be one of: NONE, ALL_DISCOUNTS, TODAYS_DEALS.","code":400}}
+[4/12/2026, 6:11:54 AM] [ERROR] [OFFERS ERROR] {"statusCode":502}
+[4/12/2026, 6:17:35 AM] [SERVER] Server is starting...
+[4/12/2026, 6:17:35 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 6:17:35 AM] [SERVER] Server listening on port 3001!
+[4/12/2026, 6:17:36 AM] [DB] Connected successfully
+[4/12/2026, 6:45:03 AM] [SERVER] Server is starting...
+[4/12/2026, 6:45:03 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/12/2026, 6:45:03 AM] [SERVER] Server listening on port 3001!
+[4/12/2026, 6:45:04 AM] [DB] Connected successfully
+[4/13/2026, 4:43:54 AM] [SERVER] Server is starting...
+[4/13/2026, 4:43:54 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/13/2026, 4:43:54 AM] [SERVER] Server listening on port 3001!
+[4/13/2026, 4:43:54 AM] [DB] Connected successfully

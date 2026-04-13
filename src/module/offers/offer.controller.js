@@ -1,127 +1,47 @@
-import { AppError } from "../../utils/AppError.js";
 import { catchError } from "../../utils/catchError.js";
-import { Offer } from "../../DB/models/offer.model.js";
-import { getPersonalizedOffers } from "./offer.service.js";
+import { getPersonalizedOffers, isValidUserId } from "./offer.service.js";
 
 /**
- * GET /offers/personalized/:userId
- * Returns personalized offers based on user's top spending category (expense).
- * Caller must be authenticated; optionally restrict to own userId (req.user._id).
+ * GET /api/offers?userId=...
+ * Personalized Amazon deals based on top spending category (or Electronics).
  */
-export const getPersonalized = catchError(async (req, res, next) => {
-  const { userId } = req.params;
-  // Optional: ensure user can only request their own personalized offers
-  if (req.user && String(req.user._id) !== String(userId)) {
-    return next(new AppError("You can only request your own personalized offers", 403));
+async function getOffers(req, res, next) {
+  try {
+    const userId = req.query.userId;
+    if (userId === undefined || userId === null || String(userId).trim() === "") {
+      return res.status(400).json({
+        success: false,
+        message: "userId query parameter is required"
+      });
+    }
+    if (!isValidUserId(String(userId))) {
+      return res.status(400).json({
+        success: false,
+        message: "userId must be a valid MongoDB ObjectId"
+      });
+    }
+
+    const result = await getPersonalizedOffers(String(userId));
+    return res.status(200).json({
+      success: true,
+      category: result.category,
+      amazonCategoryId: result.amazonCategoryId,
+      defaultedCategory: result.defaultedCategory,
+      cached: result.fromCache,
+      products: result.products
+    });
+  } catch (err) {
+    console.error('[OFFERS ERROR]', err);
+    const code = Number(err.statusCode) || 500;
+    if (code >= 500) {
+      return res.status(code).json({
+        success: false,
+        message: err.message || "Unable to load product offers. Please try again later."
+      });
+    }
+    return next(err);
   }
-  const data = await getPersonalizedOffers(userId);
-  res.status(200).json({
-    message: "Personalized offers retrieved successfully",
-    data
-  });
-});
+}
 
-// ----- Admin -----
+export const getOffersHandler = catchError(getOffers);
 
-/**
- * GET /admin/offers
- */
-export const adminListOffers = catchError(async (req, res, next) => {
-  const { isActive, category } = req.query;
-  const filter = {};
-  if (isActive !== undefined) filter.isActive = isActive === "true";
-  if (category) filter.category = category;
-  const offers = await Offer.find(filter)
-    .populate("category", "name color")
-    .sort({ createdAt: -1 })
-    .lean();
-  res.status(200).json({
-    message: "Offers retrieved successfully",
-    count: offers.length,
-    data: offers
-  });
-});
-
-/**
- * POST /admin/offers
- */
-export const adminCreateOffer = catchError(async (req, res, next) => {
-  const {
-    platformName,
-    category,
-    title,
-    discountPercentage,
-    imageUrl,
-    redirectUrl,
-    validUntil,
-    isActive
-  } = req.body;
-  if (!platformName || !category || !title || discountPercentage == null || !validUntil) {
-    return next(
-      new AppError(
-        "platformName, category, title, discountPercentage, and validUntil are required",
-        400
-      )
-    );
-  }
-  const offer = await Offer.create({
-    platformName,
-    category,
-    title,
-    discountPercentage: Number(discountPercentage),
-    imageUrl: imageUrl || undefined,
-    redirectUrl: redirectUrl || undefined,
-    validUntil: new Date(validUntil),
-    isActive: isActive !== false
-  });
-  const populated = await Offer.findById(offer._id).populate("category", "name color").lean();
-  res.status(201).json({
-    message: "Offer created successfully",
-    data: populated
-  });
-});
-
-/**
- * PUT /admin/offers/:id
- */
-export const adminUpdateOffer = catchError(async (req, res, next) => {
-  const { id } = req.params;
-  const allowed = [
-    "platformName",
-    "category",
-    "title",
-    "discountPercentage",
-    "imageUrl",
-    "redirectUrl",
-    "validUntil",
-    "isActive"
-  ];
-  const updates = {};
-  for (const key of allowed) {
-    if (req.body[key] !== undefined) updates[key] = req.body[key];
-  }
-  if (updates.validUntil) updates.validUntil = new Date(updates.validUntil);
-  const offer = await Offer.findByIdAndUpdate(id, updates, {
-    new: true,
-    runValidators: true
-  }).populate("category", "name color");
-
-  if (!offer) return next(new AppError("Offer not found", 404));
-  res.status(200).json({
-    message: "Offer updated successfully",
-    data: offer
-  });
-});
-
-/**
- * DELETE /admin/offers/:id
- */
-export const adminDeleteOffer = catchError(async (req, res, next) => {
-  const { id } = req.params;
-  const offer = await Offer.findByIdAndDelete(id);
-  if (!offer) return next(new AppError("Offer not found", 404));
-  res.status(200).json({
-    message: "Offer deleted successfully",
-    data: offer
-  });
-});

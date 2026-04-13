@@ -4,7 +4,7 @@ import { transactionsRouter } from "./transactions/transactions.routes.js";
 import { itemsRouter } from "./items/items.routes.js";
 import { analyticsRouter } from "./analytics/analytics.routes.js";
 import { exportRouter } from "./export/export.routes.js";
-import { offerRouter, adminOffersRouter } from "./offers/offer.routes.js";
+import { offersRouter } from "./offers/offer.routes.js";
 
 export const bootstrap = (app) => {
     // Auth routes
@@ -19,9 +19,6 @@ export const bootstrap = (app) => {
     app.use("/analytics", analyticsRouter);
     app.use("/export", exportRouter);
     
-    // Offers (personalized)
-    app.use("/offers", offerRouter);
-    
-    // Admin: offers CRUD
-    app.use("/admin/offers", adminOffersRouter);
+    // Amazon deals (personalized by top spending category)
+    app.use("/api/offers", offersRouter);
 };
