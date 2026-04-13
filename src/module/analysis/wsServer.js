@@ -28,11 +28,18 @@ export function startWsServer(options = {}) {
   return wss;
 }
 
-export function broadcastAnalysis(payload) {
-  const message = JSON.stringify({ type: 'analysis', payload });
+export function broadcast(message) {
+  const raw = JSON.stringify(message);
   for (const ws of clients) {
     if (ws.readyState === ws.OPEN) {
-      ws.send(message);
+      ws.send(raw);
     }
   }
+}
+
+export function broadcastAnalysis(payload) {
+  broadcast({
+    type: 'analytics_update',
+    data: payload
+  });
 }
