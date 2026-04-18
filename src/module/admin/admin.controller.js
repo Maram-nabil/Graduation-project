@@ -48,6 +48,16 @@ export const removeUser = catchError(async (req, res) => {
   res.status(200).json(result);
 });
 
+export const editUser = catchError(async (req, res) => {
+  const { id } = req.params;
+  const { firstName, lastName, email, role } = req.body;
+  if (String(req.user._id) === String(id) && role !== undefined && role !== "admin") {
+    throw new AppError("You cannot change your own role away from admin", 400);
+  }
+  const data = await adminService.updateUser(id, { firstName, lastName, email, role });
+  res.status(200).json({ message: "User updated successfully", data });
+});
+
 export const listCategories = catchError(async (req, res) => {
   const data = await adminService.getAllCategories();
   res.status(200).json({
@@ -63,6 +73,39 @@ export const listItems = catchError(async (req, res) => {
     message: "Items retrieved successfully",
     count: data.length,
     data
+  });
+});
+
+export const updateCategory = catchError(async (req, res) => {
+  const { id } = req.params;
+  const data = await adminService.updateCategoryName(id, req.body);
+  res.status(200).json({ message: "Category updated successfully", data });
+});
+
+export const deleteCategory = catchError(async (req, res) => {
+  const { id } = req.params;
+  const data = await adminService.deleteCategory(id);
+  res.status(200).json({ message: "Category deleted successfully", data });
+});
+
+export const updateItem = catchError(async (req, res) => {
+  const { id } = req.params;
+  const data = await adminService.updateItemName(id, req.body);
+  res.status(200).json({ message: "Item updated successfully", data });
+});
+
+export const deleteItem = catchError(async (req, res) => {
+  const { id } = req.params;
+  const data = await adminService.deleteItem(id);
+  res.status(200).json({ message: "Item deleted successfully", data });
+});
+
+export const getItemAmazonPrice = catchError(async (req, res) => {
+  const { id } = req.params;
+  const result = await adminService.getItemAmazonPriceSuggestions(id);
+  res.status(200).json({
+    message: "Amazon price suggestions retrieved successfully",
+    data: result
   });
 });
 

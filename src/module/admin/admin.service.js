@@ -4,7 +4,7 @@ import { Category } from "../../DB/models/category.model.js";
 import { Item } from "../../DB/models/item.model.js";
 import { Transactions } from "../../DB/models/transactions.model.js";
 import { AppError } from "../../utils/AppError.js";
-import { getOffersCacheAdminSnapshot } from "../offers/offer.service.js";
+import { getAmazonProductSearchSuggestions, getOffersCacheAdminSnapshot } from "../offers/offer.service.js";
 
 const activeTransactionMatch = { isDeleted: { $ne: true } };
 
@@ -282,4 +282,147 @@ export async function getAllTransactions(filters = {}) {
 
 export function getOffersAdmin() {
   return getOffersCacheAdminSnapshot();
+}
+
+export async function updateUser(id, body) {
+  if (!Types.ObjectId.isValid(id)) {
+    throw new AppError("Invalid user id", 400);
+  }
+
+  const { firstName, lastName, email, role } = body;
+  const user = await User.findById(id);
+  if (!user) {
+    throw new AppError("User not found", 404);
+  }
+
+  if (email !== undefined && email !== user.email) {
+    const normalized = String(email).trim().toLowerCase();
+    const taken = await User.findOne({ email: normalized, _id: { $ne: id } });
+    if (taken) {
+      throw new AppError("Email already in use", 400);
+    }
+    user.email = normalized;
+  }
+
+  if (role !== undefined) {
+    if (!["customer", "admin"].includes(role)) {
+      throw new AppError("Invalid role", 400);
+    }
+    user.role = role;
+  }
+
+  if (firstName !== undefined) {
+    user.firstName = String(firstName).trim();
+  }
+  if (lastName !== undefined) {
+    user.lastName = String(lastName).trim();
+  }
+
+  await user.save();
+  return User.findById(id).select("-password -OTP").lean();
+}
+
+export async function deleteCategory(id) {
+  if (!Types.ObjectId.isValid(id)) {
+    throw new AppError("Invalid category id", 400);
+  }
+
+  const category = await Category.findOneAndDelete({ _id: id });
+  if (!category) {
+    throw new AppError("Category not found", 404);
+  }
+
+  await Transactions.updateMany({ category: id }, { $unset: { category: 1 } });
+
+  return category;
+}
+
+export async function updateCategoryName(id, body) {
+  if (!Types.ObjectId.isValid(id)) {
+    throw new AppError("Invalid category id", 400);
+  }
+
+  const { name } = body;
+  if (name === undefined || String(name).trim() === "") {
+    throw new AppError("Name is required", 400);
+  }
+
+  const category = await Category.findById(id);
+  if (!category) {
+    throw new AppError("Category not found", 404);
+  }
+
+  const trimmed = String(name).trim();
+  const existing = await Category.findOne({
+    user: category.user,
+    name: trimmed,
+    _id: { $ne: id }
+  });
+  if (existing) {
+    throw new AppError("Category with this name already exists for this user", 400);
+  }
+
+  category.name = trimmed;
+  await category.save();
+  return category;
+}
+
+export async function deleteItem(id) {
+  if (!Types.ObjectId.isValid(id)) {
+    throw new AppError("Invalid item id", 400);
+  }
+
+  const item = await Item.findOneAndDelete({ _id: id });
+  if (!item) {
+    throw new AppError("Item not found", 404);
+  }
+
+  await Category.updateMany({ items: id }, { $pull: { items: id } });
+
+  return item;
+}
+
+export async function updateItemName(id, body) {
+  if (!Types.ObjectId.isValid(id)) {
+    throw new AppError("Invalid item id", 400);
+  }
+
+  const { name } = body;
+  if (name === undefined || String(name).trim() === "") {
+    throw new AppError("Name is required", 400);
+  }
+
+  const item = await Item.findById(id);
+  if (!item) {
+    throw new AppError("Item not found", 404);
+  }
+
+  item.name = String(name).trim();
+  await item.save();
+  return item;
+}
+
+export async function getItemAmazonPriceSuggestions(itemId) {
+  if (!Types.ObjectId.isValid(itemId)) {
+    throw new AppError("Invalid item id", 400);
+  }
+
+  const item = await Item.findById(itemId).lean();
+  if (!item) {
+    throw new AppError("Item not found", 404);
+  }
+
+  const products = await getAmazonProductSearchSuggestions(item.name, 3);
+  const suggestions = products.map(({ title, price, image, url }) => ({
+    title,
+    price,
+    image,
+    url
+  }));
+
+  return {
+    itemId: String(item._id),
+    query: item.name,
+    suggestions
+  };
 }

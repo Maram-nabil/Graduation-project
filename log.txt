@@ -742,3 +742,37 @@
 [4/13/2026, 6:23:14 AM] [AUTH] Start: GET /admin/users | IP: 127.0.0.1
 [4/13/2026, 6:23:15 AM] [AUTH][GRANTED] User: Admin User | Role: admin
 [4/13/2026, 6:23:15 AM] [AUTHZ][GRANTED] Admin User | Role: admin
+[4/17/2026, 9:52:45 PM] [SERVER] Server is starting...
+[4/17/2026, 9:52:45 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/17/2026, 9:52:45 PM] [SERVER] Server listening on port 3001!
+[4/17/2026, 9:52:47 PM] [DB] Connected successfully
+[4/18/2026, 4:42:41 AM] [SERVER] Server is starting...
+[4/18/2026, 4:42:41 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/18/2026, 4:42:41 AM] [SERVER] Server listening on port 3001!
+[4/18/2026, 4:42:41 AM] [DB] Connected successfully
+[4/18/2026, 4:42:59 AM] [SERVER] Server is starting...
+[4/18/2026, 4:42:59 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/18/2026, 4:42:59 AM] [SERVER] Server listening on port 3001!
+[4/18/2026, 4:42:59 AM] [DB] Connected successfully
+[4/18/2026, 4:43:10 AM] [SERVER] Server is starting...
+[4/18/2026, 4:43:10 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/18/2026, 4:43:10 AM] [SERVER] Server listening on port 3001!
+[4/18/2026, 4:43:11 AM] [DB] Connected successfully
+[4/18/2026, 4:43:14 AM] [SERVER] Server is starting...
+[4/18/2026, 4:43:14 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/18/2026, 4:43:14 AM] [SERVER] Server listening on port 3001!
+[4/18/2026, 4:43:15 AM] [DB] Connected successfully
+[4/18/2026, 4:43:17 AM] [SERVER] Server is starting...
+[4/18/2026, 4:43:17 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/18/2026, 4:43:17 AM] [SERVER] Server listening on port 3001!
+[4/18/2026, 4:43:18 AM] [DB] Connected successfully
+[4/18/2026, 4:43:44 AM] [SERVER] Server is starting...
+[4/18/2026, 4:43:44 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/18/2026, 4:43:44 AM] [SERVER] Server listening on port 3001!
+[4/18/2026, 4:43:45 AM] [DB] Connected successfully
+[4/18/2026, 4:48:32 AM] [AUTH] Start: GET /admin/users | IP: 127.0.0.1
+[4/18/2026, 4:48:32 AM] [AUTH][GRANTED] User: Admin User | Role: admin
+[4/18/2026, 4:48:32 AM] [AUTHZ][GRANTED] Admin User | Role: admin
+[4/18/2026, 4:54:02 AM] [AUTH] Start: GET /admin/stats | IP: 127.0.0.1
+[4/18/2026, 4:54:02 AM] [AUTH][GRANTED] User: Admin User | Role: admin
+[4/18/2026, 4:54:02 AM] [AUTHZ][GRANTED] Admin User | Role: admin

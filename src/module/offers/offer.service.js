@@ -177,6 +177,67 @@ export async function getOffersForAmazonCategory(amazonCategoryId) {
 }
 
 /**
+ * Keyword product search (admin item price suggestions).
+ * Uses GET /product-search on Real-Time Amazon Data (RapidAPI).
+ * @param {string} searchQuery
+ * @param {number} [limit=3]
+ * @returns {Promise<ReturnType<typeof mapProduct>[]>}
+ */
+export async function getAmazonProductSearchSuggestions(searchQuery, limit = 3) {
+  const q = typeof searchQuery === "string" ? searchQuery.trim() : "";
+  if (!q) {
+    const err = new Error("Search query is required");
+    err.statusCode = 400;
+    throw err;
+  }
+
+  const key = process.env.RAPIDAPI_KEY;
+  if (!key) {
+    const err = new Error("RAPIDAPI_KEY is not configured");
+    err.statusCode = 503;
+    throw err;
+  }
+
+  let response;
+  try {
+    response = await axios.get(`${RAPIDAPI_BASE}/product-search`, {
+      params: {
+        query: q,
+        country: "US",
+        page: 1
+      },
+      headers: {
+        "X-RapidAPI-Key": key,
+        "X-RapidAPI-Host": RAPIDAPI_HOST
+      },
+      timeout: 25000,
+      validateStatus: () => true
+    });
+  } catch (e) {
+    const err = new Error(e.message || "Failed to reach Amazon data API");
+    err.statusCode = 502;
+    err.cause = e;
+    throw err;
+  }
+
+  if (response.status < 200 || response.status >= 300) {
+    console.log("[AMAZON API ERROR] product-search status:", response.status);
+    console.log("[AMAZON API ERROR] product-search data:", JSON.stringify(response.data));
+    const msg =
+      response.data?.message ||
+      response.data?.error ||
+      `Amazon data API returned status ${response.status}`;
+    const err = new Error(msg);
+    err.statusCode = 502;
+    throw err;
+  }
+
+  const rawList = extractProducts(response.data);
+  const max = Math.min(Math.max(Number(limit) || 3, 1), 10);
+  return rawList.slice(0, max).map(mapProduct);
+}
+
+/**
  * @param {string} userIdHex
  */
 export async function getPersonalizedOffers(userIdHex) {
