@@ -107,13 +107,30 @@ function extractProducts(payload) {
   return [];
 }
 
-function mapProduct(raw) {
+function mapProduct(raw, categoryName = null) {
+  const price = raw.product_price ?? raw.price ?? null;
+  const original_price = raw.product_original_price ?? null;
+
+  // Calculate discount if not provided
+  let discount = raw.product_discounted_price ?? raw.savings_percent ?? null;
+  if (!discount && price && original_price) {
+    const priceNum = parseFloat(String(price).replace(/[^0-9.]/g, ""));
+    const originalNum = parseFloat(String(original_price).replace(/[^0-9.]/g, ""));
+    if (originalNum > priceNum) {
+      const percent = Math.round(((originalNum - priceNum) / originalNum) * 100);
+      discount = `${percent}% off`;
+    }
+  }
+
   return {
     title: raw.product_title ?? raw.title ?? "",
-    price: raw.product_price ?? raw.price ?? null,
+    price,
+    original_price,
+    discount,
     image: raw.product_photo ?? raw.image ?? raw.product_image ?? null,
     url: raw.product_url ?? raw.url ?? null,
-    rating: raw.product_star_rating ?? raw.rating ?? raw.stars ?? null
+    rating: raw.product_star_rating ?? raw.rating ?? raw.stars ?? null,
+    category: categoryName
   };
 }
 
@@ -121,11 +138,12 @@ function mapProduct(raw) {
  * @param {string} amazonCategoryId
  * @returns {Promise<{ products: ReturnType<typeof mapProduct>[], fromCache: boolean }>}
  */
-export async function getOffersForAmazonCategory(amazonCategoryId) {
+export async function getOffersForAmazonCategory(amazonCategoryId, categoryName = null, maxPerCategory = 5) {
   const cacheKey = `amazon-offers:${amazonCategoryId}`;
   const hit = offersCache.get(cacheKey);
   if (hit) {
-    return { products: hit, fromCache: true };
+    const limited = hit.slice(0, maxPerCategory).map((p) => ({ ...p, category: categoryName }));
+    return { products: limited, fromCache: true };
   }
 
   const key = process.env.RAPIDAPI_KEY;
@@ -171,8 +189,9 @@ export async function getOffersForAmazonCategory(amazonCategoryId) {
   }
 
   const rawList = extractProducts(response.data);
-  const products = rawList.slice(0, 10).map(mapProduct);
-  offersCache.set(cacheKey, products);
+  const baseProducts = rawList.slice(0, 10).map((raw) => mapProduct(raw, null));
+  offersCache.set(cacheKey, baseProducts);
+  const products = baseProducts.slice(0, maxPerCategory).map((p) => ({ ...p, category: categoryName }));
   return { products, fromCache: false };
 }
 
@@ -242,17 +261,116 @@ export async function getAmazonProductSearchSuggestions(searchQuery, limit = 3) 
  */
 export async function getPersonalizedOffers(userIdHex) {
   const userId = new Types.ObjectId(userIdHex);
-  const topName = await getTopSpendingCategoryName(userId);
-  const amazonId = resolveAmazonCategoryId(topName);
-  const categoryLabel = topName ?? resolveDisplayCategoryName(null, amazonId);
-  const { products, fromCache } = await getOffersForAmazonCategory(amazonId);
+  const categories = await getUserCategoriesBySpending(userId);
+  if (!categories.length) {
+    const fallback = pickRandomAmazonCategory();
+    const fallbackName = fallback.name.replace(/^./, (c) => c.toUpperCase());
+    const { products, fromCache } = await getOffersForAmazonCategory(fallback.id, fallbackName, 5);
+    return {
+      categories: [{ category: fallbackName, amazonCategoryId: fallback.id, total: 0 }],
+      defaultedCategory: true,
+      cached: fromCache,
+      products
+    };
+  }
+
+  const perCategory = await Promise.all(
+    categories.map(async (cat) => {
+      const fetched = await getOffersForAmazonCategory(cat.amazonCategoryId, cat.category, 5);
+      return {
+        ...cat,
+        fromCache: fetched.fromCache,
+        products: fetched.products
+      };
+    })
+  );
+
+  const products = perCategory.flatMap((entry) => entry.products);
+  const cached = perCategory.every((entry) => entry.fromCache);
   return {
-    category: categoryLabel,
-    amazonCategoryId: amazonId,
-    defaultedCategory: !topName,
+    categories: perCategory.map(({ category, amazonCategoryId, total }) => ({ category, amazonCategoryId, total })),
+    defaultedCategory: false,
+    cached,
     products,
-    fromCache
+    byCategory: perCategory.map(({ category, amazonCategoryId, total, fromCache, products: scopedProducts }) => ({
+      category,
+      amazonCategoryId,
+      total,
+      cached: fromCache,
+      products: scopedProducts
+    }))
   };
+}
+
+export async function getOffersPreview(userIdHex) {
+  const userId = new Types.ObjectId(userIdHex);
+  const categories = await getUserCategoriesBySpending(userId, 3);
+
+  if (!categories.length) {
+    return { products: [], categories: [], defaultedCategory: true, cached: true };
+  }
+
+  const picked = await Promise.all(
+    categories.map(async (cat) => {
+      const { products, fromCache } = await getOffersForAmazonCategory(cat.amazonCategoryId, cat.category, 5);
+      return {
+        category: cat.category,
+        amazonCategoryId: cat.amazonCategoryId,
+        total: cat.total,
+        cached: fromCache,
+        product: products[0] || null
+      };
+    })
+  );
+
+  const products = picked.filter((x) => x.product).map((x) => x.product).slice(0, 3);
+  return {
+    products,
+    categories: picked.map(({ category, amazonCategoryId, total }) => ({ category, amazonCategoryId, total })),
+    defaultedCategory: false,
+    cached: picked.every((x) => x.cached)
+  };
+}
+
+async function getUserCategoriesBySpending(userId, limit = null) {
+  const pipeline = [
+    { $match: userExpenseMatch(userId) },
+    { $group: { _id: "$category", total: { $sum: "$price" } } },
+    { $sort: { total: -1 } },
+    {
+      $lookup: {
+        from: "categories",
+        localField: "_id",
+        foreignField: "_id",
+        as: "cat"
+      }
+    },
+    { $unwind: { path: "$cat", preserveNullAndEmptyArrays: true } },
+    {
+      $project: {
+        _id: 0,
+        total: 1,
+        category: { $ifNull: ["$cat.name", null] }
+      }
+    }
+  ];
+
+  if (Number.isInteger(limit) && limit > 0) {
+    pipeline.push({ $limit: limit });
+  }
+
+  const rows = await Transactions.aggregate(pipeline);
+  return rows.map((row) => {
+    const category = typeof row.category === "string" && row.category.trim()
+      ? row.category.trim()
+      : resolveDisplayCategoryName(null, resolveAmazonCategoryId(null));
+    const amazonCategoryId = resolveAmazonCategoryId(category);
+    return {
+      category,
+      amazonCategoryId,
+      total: row.total ?? 0
+    };
+  });
 }
 
 export function isValidUserId(userId) {

@@ -776,3 +776,40 @@
 [4/18/2026, 4:54:02 AM] [AUTH] Start: GET /admin/stats | IP: 127.0.0.1
 [4/18/2026, 4:54:02 AM] [AUTH][GRANTED] User: Admin User | Role: admin
 [4/18/2026, 4:54:02 AM] [AUTHZ][GRANTED] Admin User | Role: admin
+[4/22/2026, 10:28:17 AM] [SERVER] Server is starting...
+[4/22/2026, 10:28:17 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/22/2026, 10:28:17 AM] [SERVER] Server listening on port 3001!
+[4/22/2026, 10:28:17 AM] [DB] Connection error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.a0leflb.mongodb.net
+[4/22/2026, 10:29:21 AM] [SERVER] Server is starting...
+[4/22/2026, 10:29:21 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/22/2026, 10:29:21 AM] [SERVER] Server listening on port 3001!
+[4/22/2026, 10:29:23 AM] [DB] Connected successfully
+[4/22/2026, 10:32:18 AM] [AUTH] Start: GET /admin/stats | IP: 127.0.0.1
+[4/22/2026, 10:32:19 AM] [AUTH][GRANTED] User: Admin User | Role: admin
+[4/22/2026, 10:32:19 AM] [AUTHZ][GRANTED] Admin User | Role: admin
+[4/22/2026, 10:36:06 AM] [AUTH] Start: GET /admin/users | IP: 127.0.0.1
+[4/22/2026, 10:36:07 AM] [AUTH][GRANTED] User: Admin User | Role: admin
+[4/22/2026, 10:36:07 AM] [AUTHZ][GRANTED] Admin User | Role: admin
+[4/22/2026, 10:36:50 AM] [AUTH] Start: GET /admin/users | IP: 127.0.0.1
+[4/22/2026, 10:36:51 AM] [AUTH][GRANTED] User: Admin User | Role: admin
+[4/22/2026, 10:36:51 AM] [AUTHZ][GRANTED] Admin User | Role: admin
+[4/22/2026, 10:52:34 AM] [SERVER] Server is starting...
+[4/22/2026, 10:52:34 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/22/2026, 10:52:34 AM] [SERVER] Server listening on port 3001!
+[4/22/2026, 10:52:35 AM] [DB] Connected successfully
+[4/22/2026, 10:53:15 AM] [SERVER] Server is starting...
+[4/22/2026, 10:53:15 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/22/2026, 10:53:15 AM] [SERVER] Server listening on port 3001!
+[4/22/2026, 10:53:17 AM] [DB] Connected successfully
+[4/22/2026, 10:53:35 AM] [SERVER] Server is starting...
+[4/22/2026, 10:53:35 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/22/2026, 10:53:35 AM] [SERVER] Server listening on port 3001!
+[4/22/2026, 10:53:36 AM] [DB] Connected successfully
+[4/23/2026, 10:30:03 PM] [SERVER] Server is starting...
+[4/23/2026, 10:30:03 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/23/2026, 10:30:03 PM] [SERVER] Server listening on port 3001!
+[4/23/2026, 10:30:04 PM] [DB] Connected successfully
+[4/23/2026, 10:41:18 PM] [SERVER] Server is starting...
+[4/23/2026, 10:41:18 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/23/2026, 10:41:18 PM] [SERVER] Server listening on port 3001!
+[4/23/2026, 10:41:20 PM] [DB] Connected successfully
