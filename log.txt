@@ -813,3 +813,29 @@
 [4/23/2026, 10:41:18 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
 [4/23/2026, 10:41:18 PM] [SERVER] Server listening on port 3001!
 [4/23/2026, 10:41:20 PM] [DB] Connected successfully
+[4/23/2026, 11:32:49 PM] [SERVER] Server is starting...
+[4/23/2026, 11:32:49 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/23/2026, 11:32:49 PM] [SERVER] Server listening on port 3001!
+[4/23/2026, 11:32:52 PM] [DB] Connected successfully
+[4/23/2026, 11:32:54 PM] [signupAndSendOtp] START {"body":{"firstName":"Rawan","lastName":"Mostafa","email":"rawanmostafa@gmail.com","password":"Rawan@mny","phone":"01027357"}}
+[4/23/2026, 11:32:54 PM] [signupAndSendOtp] SUCCESS {"user":"rawanmostafa@gmail.com"}
+[4/23/2026, 11:32:57 PM] [EMAIL] Message sent: <110afe91-d233-e62f-03fa-a4b5c398baf2@gmail.com>
+[4/23/2026, 11:32:57 PM] [signupAndSendOtp] EMAIL SENT <110afe91-d233-e62f-03fa-a4b5c398baf2@gmail.com>
+[4/23/2026, 11:34:34 PM] [signupAndSendOtp] START {"body":{"firstName":"Rawan","lastName":"Mostafa","email":"maram.yassim@gmail.com","password":"Rawan@mny","phone":"01027357"}}
+[4/23/2026, 11:34:34 PM] [signupAndSendOtp] SUCCESS {"user":"maram.yassim@gmail.com"}
+[4/23/2026, 11:34:36 PM] [EMAIL] Message sent: <d14ba1d3-f0c9-6bc9-f6e2-3c1725f873d4@gmail.com>
+[4/23/2026, 11:34:36 PM] [signupAndSendOtp] EMAIL SENT <d14ba1d3-f0c9-6bc9-f6e2-3c1725f873d4@gmail.com>
+[4/23/2026, 11:35:30 PM] [signupAndSendOtp] START {"body":{"firstName":"maram","lastName":"nabil","email":"maram.yassim@gmail.com","password":"Rawan@mny","phone":"01027357"}}
+[4/23/2026, 11:35:30 PM] [ERROR] [signupAndSendOtp] ERROR: Email already taken {"email":"maram.yassim@gmail.com"}
+[4/23/2026, 11:37:25 PM] [signupAndSendOtp] START {"body":{"firstName":"rawan","lastName":"mostafa","email":"rawanmostafa1055@gmail.com","password":"Rawan@mny","phone":"01027357"}}
+[4/23/2026, 11:37:25 PM] [signupAndSendOtp] SUCCESS {"user":"rawanmostafa1055@gmail.com"}
+[4/23/2026, 11:37:28 PM] [EMAIL] Message sent: <249c523d-0354-8a9b-2f3b-187a2cc75b15@gmail.com>
+[4/23/2026, 11:37:28 PM] [signupAndSendOtp] EMAIL SENT <249c523d-0354-8a9b-2f3b-187a2cc75b15@gmail.com>
+[4/23/2026, 11:48:25 PM] [SERVER] Server is starting...
+[4/23/2026, 11:48:25 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/23/2026, 11:48:25 PM] [SERVER] Server listening on port 3001!
+[4/23/2026, 11:48:26 PM] [DB] Connected successfully
+[4/23/2026, 11:49:30 PM] [SERVER] Server is starting...
+[4/23/2026, 11:49:30 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/23/2026, 11:49:30 PM] [SERVER] Server listening on port 3001!
+[4/23/2026, 11:49:32 PM] [DB] Connected successfully

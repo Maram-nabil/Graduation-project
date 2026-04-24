@@ -1,12 +1,13 @@
 {
   "info": {
-    "name": "Expense Tracker API - Complete",
-    "description": "Complete API collection for Expense Tracker application",
+    "name": "Expense Tracker API - Current",
+    "description": "Updated Postman collection for current backend endpoints.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
     { "key": "baseUrl", "value": "http://localhost:3001" },
-    { "key": "token", "value": "" }
+    { "key": "token", "value": "" },
+    { "key": "adminToken", "value": "" }
   ],
   "item": [
     {
@@ -19,23 +20,34 @@
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"phone\": \"1234567890\",\n  \"countryCode\": \"+20\",\n  \"country\": \"Egypt\"\n}"
+              "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"phone\": \"01000000000\"\n}"
             },
             "url": { "raw": "{{baseUrl}}/auth/signup", "host": ["{{baseUrl}}"], "path": ["auth", "signup"] }
           }
         },
         {
-          "name": "Confirm OTP",
+          "name": "Signup Configuration OTP",
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n  \"otp\": \"123456\"\n}" },
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"john@example.com\",\n  \"otp\": \"123456\"\n}" },
             "url": { "raw": "{{baseUrl}}/auth/signup/configurationOTP", "host": ["{{baseUrl}}"], "path": ["auth", "signup", "configurationOTP"] }
           }
         },
         {
           "name": "Signin",
-          "event": [{ "listen": "test", "script": { "exec": ["var jsonData = pm.response.json();", "if (jsonData.token) { pm.collectionVariables.set('token', jsonData.token); }"], "type": "text/javascript" } }],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.token) pm.collectionVariables.set('token', jsonData.token);"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -44,29 +56,12 @@
           }
         },
         {
-          "name": "Get Profile",
-          "request": {
-            "method": "GET",
-            "header": [{ "key": "token", "value": "{{token}}" }],
-            "url": { "raw": "{{baseUrl}}/auth/profile", "host": ["{{baseUrl}}"], "path": ["auth", "profile"] }
-          }
-        },
-        {
-          "name": "Update Profile",
-          "request": {
-            "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{token}}" }],
-            "body": { "mode": "raw", "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"phone\": \"0987654321\"\n}" },
-            "url": { "raw": "{{baseUrl}}/auth/profile", "host": ["{{baseUrl}}"], "path": ["auth", "profile"] }
-          }
-        },
-        {
-          "name": "Change Password",
+          "name": "Resend OTP",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{token}}" }],
-            "body": { "mode": "raw", "raw": "{\n  \"oldPassword\": \"password123\",\n  \"newPassword\": \"newpassword456\"\n}" },
-            "url": { "raw": "{{baseUrl}}/auth/changePassword", "host": ["{{baseUrl}}"], "path": ["auth", "changePassword"] }
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"john@example.com\"\n}" },
+            "url": { "raw": "{{baseUrl}}/auth/resendOTP", "host": ["{{baseUrl}}"], "path": ["auth", "resendOTP"] }
           }
         },
         {
@@ -83,17 +78,39 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n  \"newPassword\": \"newpassword789\"\n}" },
-            "url": { "raw": "{{baseUrl}}/auth/setNewPassword?token=reset_token_here", "host": ["{{baseUrl}}"], "path": ["auth", "setNewPassword"], "query": [{ "key": "token", "value": "reset_token_here" }] }
+            "body": { "mode": "raw", "raw": "{\n  \"newPassword\": \"newpassword123\"\n}" },
+            "url": {
+              "raw": "{{baseUrl}}/auth/setNewPassword?token=reset_token_here",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "setNewPassword"],
+              "query": [{ "key": "token", "value": "reset_token_here" }]
+            }
           }
         },
         {
-          "name": "Resend OTP",
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "token", "value": "{{token}}" }],
+            "url": { "raw": "{{baseUrl}}/auth/profile", "host": ["{{baseUrl}}"], "path": ["auth", "profile"] }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{token}}" }],
+            "body": { "mode": "raw", "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Updated\",\n  \"phone\": \"01111111111\"\n}" },
+            "url": { "raw": "{{baseUrl}}/auth/profile", "host": ["{{baseUrl}}"], "path": ["auth", "profile"] }
+          }
+        },
+        {
+          "name": "Change Password",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n  \"email\": \"john@example.com\"\n}" },
-            "url": { "raw": "{{baseUrl}}/auth/resendOTP", "host": ["{{baseUrl}}"], "path": ["auth", "resendOTP"] }
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{token}}" }],
+            "body": { "mode": "raw", "raw": "{\n  \"oldPassword\": \"password123\",\n  \"newPassword\": \"newpassword456\"\n}" },
+            "url": { "raw": "{{baseUrl}}/auth/changePassword", "host": ["{{baseUrl}}"], "path": ["auth", "changePassword"] }
           }
         },
         {
@@ -111,37 +128,44 @@
       "name": "Transactions",
       "item": [
         {
-          "name": "Create with Text",
+          "name": "Create With Text",
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{token}}" }],
-            "body": { "mode": "raw", "raw": "{\n  \"text\": \"Bought coffee from Starbucks\",\n  \"items\": [{\"_id\": \"item_id_here\"}],\n  \"price\": 50\n}" },
+            "body": { "mode": "raw", "raw": "{\n  \"text\": \"Bought coffee\",\n  \"items\": [{ \"_id\": \"item_id_here\" }],\n  \"price\": 50\n}" },
             "url": { "raw": "{{baseUrl}}/transactions/createWithText", "host": ["{{baseUrl}}"], "path": ["transactions", "createWithText"] }
           }
         },
         {
-          "name": "Create with Voice",
+          "name": "Create With Voice",
           "request": {
             "method": "POST",
             "header": [{ "key": "token", "value": "{{token}}" }],
-            "body": { "mode": "formdata", "formdata": [{ "key": "voice_path", "type": "file" }, { "key": "items", "value": "[{\"_id\": \"item_id\"}]", "type": "text" }, { "key": "price", "value": "100", "type": "text" }] },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "voice_path", "type": "file" },
+                { "key": "items", "type": "text", "value": "[{\"_id\":\"item_id_here\"}]" },
+                { "key": "price", "type": "text", "value": "100" }
+              ]
+            },
             "url": { "raw": "{{baseUrl}}/transactions/createWithVoice", "host": ["{{baseUrl}}"], "path": ["transactions", "createWithVoice"] }
           }
         },
         {
-          "name": "Create with OCR",
+          "name": "Create With OCR",
           "request": {
             "method": "POST",
             "header": [{ "key": "token", "value": "{{token}}" }],
-            "body": { "mode": "formdata", "formdata": [{ "key": "OCR_path", "type": "file" }, { "key": "items", "value": "[{\"_id\": \"item_id\"}]", "type": "text" }, { "key": "price", "value": "250", "type": "text" }] },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "OCR_path", "type": "file" },
+                { "key": "items", "type": "text", "value": "[{\"_id\":\"item_id_here\"}]" },
+                { "key": "price", "type": "text", "value": "250" }
+              ]
+            },
             "url": { "raw": "{{baseUrl}}/transactions/createWithOCR", "host": ["{{baseUrl}}"], "path": ["transactions", "createWithOCR"] }
-          }
-        },
-        {
-          "name": "Get All Transactions",
-          "request": {
-            "method": "GET",
-            "url": { "raw": "{{baseUrl}}/transactions?page=1&limit=10&sort=-createdAt", "host": ["{{baseUrl}}"], "path": ["transactions"], "query": [{ "key": "page", "value": "1" }, { "key": "limit", "value": "10" }, { "key": "sort", "value": "-createdAt" }] }
           }
         },
         {
@@ -149,31 +173,51 @@
           "request": {
             "method": "GET",
             "header": [{ "key": "token", "value": "{{token}}" }],
-            "url": { "raw": "{{baseUrl}}/transactions/my?page=1&limit=10", "host": ["{{baseUrl}}"], "path": ["transactions", "my"], "query": [{ "key": "page", "value": "1" }, { "key": "limit", "value": "10" }] }
+            "url": {
+              "raw": "{{baseUrl}}/transactions/my?page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions", "my"],
+              "query": [{ "key": "page", "value": "1" }, { "key": "limit", "value": "10" }]
+            }
           }
         },
         {
-          "name": "Get Transaction by ID",
+          "name": "Get Transaction By ID",
           "request": {
             "method": "GET",
             "header": [{ "key": "token", "value": "{{token}}" }],
-            "url": { "raw": "{{baseUrl}}/transactions/:id", "host": ["{{baseUrl}}"], "path": ["transactions", ":id"], "variable": [{ "key": "id", "value": "transaction_id" }] }
+            "url": {
+              "raw": "{{baseUrl}}/transactions/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions", ":id"],
+              "variable": [{ "key": "id", "value": "transaction_id" }]
+            }
           }
         },
         {
-          "name": "Get by Category",
+          "name": "Get Transactions By Category",
           "request": {
             "method": "GET",
             "header": [{ "key": "token", "value": "{{token}}" }],
-            "url": { "raw": "{{baseUrl}}/transactions/category/:categoryId", "host": ["{{baseUrl}}"], "path": ["transactions", "category", ":categoryId"], "variable": [{ "key": "categoryId", "value": "category_id" }] }
+            "url": {
+              "raw": "{{baseUrl}}/transactions/category/:categoryId",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions", "category", ":categoryId"],
+              "variable": [{ "key": "categoryId", "value": "category_id" }]
+            }
           }
         },
         {
-          "name": "Get by Date Range",
+          "name": "Get Transactions Date Range",
           "request": {
             "method": "GET",
             "header": [{ "key": "token", "value": "{{token}}" }],
-            "url": { "raw": "{{baseUrl}}/transactions/date-range?startDate=2024-01-01&endDate=2024-12-31", "host": ["{{baseUrl}}"], "path": ["transactions", "date-range"], "query": [{ "key": "startDate", "value": "2024-01-01" }, { "key": "endDate", "value": "2024-12-31" }] }
+            "url": {
+              "raw": "{{baseUrl}}/transactions/date-range?startDate=2025-01-01&endDate=2025-12-31",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions", "date-range"],
+              "query": [{ "key": "startDate", "value": "2025-01-01" }, { "key": "endDate", "value": "2025-12-31" }]
+            }
           }
         },
         {
@@ -182,7 +226,12 @@
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{token}}" }],
             "body": { "mode": "raw", "raw": "{\n  \"text\": \"Updated description\",\n  \"price\": 75\n}" },
-            "url": { "raw": "{{baseUrl}}/transactions/:id", "host": ["{{baseUrl}}"], "path": ["transactions", ":id"], "variable": [{ "key": "id", "value": "transaction_id" }] }
+            "url": {
+              "raw": "{{baseUrl}}/transactions/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions", ":id"],
+              "variable": [{ "key": "id", "value": "transaction_id" }]
+            }
           }
         },
         {
@@ -190,7 +239,12 @@
           "request": {
             "method": "DELETE",
             "header": [{ "key": "token", "value": "{{token}}" }],
-            "url": { "raw": "{{baseUrl}}/transactions/:id", "host": ["{{baseUrl}}"], "path": ["transactions", ":id"], "variable": [{ "key": "id", "value": "transaction_id" }] }
+            "url": {
+              "raw": "{{baseUrl}}/transactions/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions", ":id"],
+              "variable": [{ "key": "id", "value": "transaction_id" }]
+            }
           }
         }
       ]
@@ -203,12 +257,12 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{token}}" }],
-            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Food\",\n  \"color\": \"#FF5733\",\n  \"icon\": \"restaurant\",\n  \"budget\": 1000\n}" },
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Food\",\n  \"color\": \"#ff6633\"\n}" },
             "url": { "raw": "{{baseUrl}}/category", "host": ["{{baseUrl}}"], "path": ["category"] }
           }
         },
         {
-          "name": "Get My Categories",
+          "name": "Get Categories",
           "request": {
             "method": "GET",
             "header": [{ "key": "token", "value": "{{token}}" }],
@@ -216,7 +270,7 @@
           }
         },
         {
-          "name": "Get Category by ID",
+          "name": "Get Category By ID",
           "request": {
             "method": "GET",
             "header": [{ "key": "token", "value": "{{token}}" }],
@@ -224,7 +278,7 @@
           }
         },
         {
-          "name": "Get Category with Items",
+          "name": "Get Category Items",
           "request": {
             "method": "GET",
             "header": [{ "key": "token", "value": "{{token}}" }],
@@ -236,7 +290,7 @@
           "request": {
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{token}}" }],
-            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Food & Drinks\",\n  \"color\": \"#00FF00\"\n}" },
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Food & Drinks\",\n  \"color\": \"#33cc66\"\n}" },
             "url": { "raw": "{{baseUrl}}/category/:id", "host": ["{{baseUrl}}"], "path": ["category", ":id"], "variable": [{ "key": "id", "value": "category_id" }] }
           }
         },
@@ -249,7 +303,7 @@
           }
         },
         {
-          "name": "Add Items to Category",
+          "name": "Add Items To Category",
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{token}}" }],
@@ -258,7 +312,7 @@
           }
         },
         {
-          "name": "Remove Items from Category",
+          "name": "Remove Items From Category",
           "request": {
             "method": "DELETE",
             "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{token}}" }],
@@ -276,12 +330,12 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{token}}" }],
-            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Coffee\",\n  \"price\": 25,\n  \"categoryId\": \"category_id_optional\"\n}" },
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Coffee\",\n  \"price\": 35,\n  \"description\": \"Morning coffee\"\n}" },
             "url": { "raw": "{{baseUrl}}/items", "host": ["{{baseUrl}}"], "path": ["items"] }
           }
         },
         {
-          "name": "Get My Items",
+          "name": "Get Items",
           "request": {
             "method": "GET",
             "header": [{ "key": "token", "value": "{{token}}" }],
@@ -289,7 +343,7 @@
           }
         },
         {
-          "name": "Get Item by ID",
+          "name": "Get Item By ID",
           "request": {
             "method": "GET",
             "header": [{ "key": "token", "value": "{{token}}" }],
@@ -301,7 +355,7 @@
           "request": {
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{token}}" }],
-            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Espresso\",\n  \"price\": 30\n}" },
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Espresso\",\n  \"price\": 45\n}" },
             "url": { "raw": "{{baseUrl}}/items/:id", "host": ["{{baseUrl}}"], "path": ["items", ":id"], "variable": [{ "key": "id", "value": "item_id" }] }
           }
         },
@@ -314,7 +368,7 @@
           }
         },
         {
-          "name": "Add Item to Category",
+          "name": "Add Item To Category",
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{token}}" }],
@@ -323,7 +377,7 @@
           }
         },
         {
-          "name": "Remove Item from Category",
+          "name": "Remove Item From Category",
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{token}}" }],
@@ -336,110 +390,92 @@
     {
       "name": "Analytics",
       "item": [
+        { "name": "Summary", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{token}}" }], "url": { "raw": "{{baseUrl}}/analytics/summary", "host": ["{{baseUrl}}"], "path": ["analytics", "summary"] } } },
+        { "name": "By Category", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{token}}" }], "url": { "raw": "{{baseUrl}}/analytics/by-category", "host": ["{{baseUrl}}"], "path": ["analytics", "by-category"] } } },
+        { "name": "By Date", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{token}}" }], "url": { "raw": "{{baseUrl}}/analytics/by-date?period=daily", "host": ["{{baseUrl}}"], "path": ["analytics", "by-date"], "query": [{ "key": "period", "value": "daily" }] } } },
+        { "name": "Top Categories", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{token}}" }], "url": { "raw": "{{baseUrl}}/analytics/top-categories?limit=5", "host": ["{{baseUrl}}"], "path": ["analytics", "top-categories"], "query": [{ "key": "limit", "value": "5" }] } } },
+        { "name": "Trends", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{token}}" }], "url": { "raw": "{{baseUrl}}/analytics/trends", "host": ["{{baseUrl}}"], "path": ["analytics", "trends"] } } }
+      ]
+    },
+    {
+      "name": "Offers",
+      "item": [
         {
-          "name": "Get Summary",
+          "name": "All Offers",
           "request": {
             "method": "GET",
-            "header": [{ "key": "token", "value": "{{token}}" }],
-            "url": { "raw": "{{baseUrl}}/analytics/summary", "host": ["{{baseUrl}}"], "path": ["analytics", "summary"] }
+            "url": {
+              "raw": "{{baseUrl}}/api/offers?userId=user_id_here",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "offers"],
+              "query": [{ "key": "userId", "value": "user_id_here" }]
+            }
           }
         },
         {
-          "name": "Get by Category",
+          "name": "Offers Preview",
           "request": {
             "method": "GET",
-            "header": [{ "key": "token", "value": "{{token}}" }],
-            "url": { "raw": "{{baseUrl}}/analytics/by-category?startDate=2024-01-01&endDate=2024-12-31", "host": ["{{baseUrl}}"], "path": ["analytics", "by-category"], "query": [{ "key": "startDate", "value": "2024-01-01", "disabled": true }, { "key": "endDate", "value": "2024-12-31", "disabled": true }] }
-          }
-        },
-        {
-          "name": "Get by Date",
-          "request": {
-            "method": "GET",
-            "header": [{ "key": "token", "value": "{{token}}" }],
-            "url": { "raw": "{{baseUrl}}/analytics/by-date?period=daily&startDate=2024-01-01&endDate=2024-12-31", "host": ["{{baseUrl}}"], "path": ["analytics", "by-date"], "query": [{ "key": "period", "value": "daily", "description": "daily, weekly, or monthly" }, { "key": "startDate", "value": "2024-01-01", "disabled": true }, { "key": "endDate", "value": "2024-12-31", "disabled": true }] }
-          }
-        },
-        {
-          "name": "Get Top Categories",
-          "request": {
-            "method": "GET",
-            "header": [{ "key": "token", "value": "{{token}}" }],
-            "url": { "raw": "{{baseUrl}}/analytics/top-categories?limit=5", "host": ["{{baseUrl}}"], "path": ["analytics", "top-categories"], "query": [{ "key": "limit", "value": "5" }] }
-          }
-        },
-        {
-          "name": "Get Trends",
-          "request": {
-            "method": "GET",
-            "header": [{ "key": "token", "value": "{{token}}" }],
-            "url": { "raw": "{{baseUrl}}/analytics/trends", "host": ["{{baseUrl}}"], "path": ["analytics", "trends"] }
+            "url": {
+              "raw": "{{baseUrl}}/api/offers/preview?userId=user_id_here",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "offers", "preview"],
+              "query": [{ "key": "userId", "value": "user_id_here" }]
+            }
           }
         }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        { "name": "Stats", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{adminToken}}" }], "url": { "raw": "{{baseUrl}}/admin/stats", "host": ["{{baseUrl}}"], "path": ["admin", "stats"] } } },
+        { "name": "Users", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{adminToken}}" }], "url": { "raw": "{{baseUrl}}/admin/users?page=1&limit=10", "host": ["{{baseUrl}}"], "path": ["admin", "users"], "query": [{ "key": "page", "value": "1" }, { "key": "limit", "value": "10" }] } } },
+        { "name": "User By ID", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{adminToken}}" }], "url": { "raw": "{{baseUrl}}/admin/users/:id", "host": ["{{baseUrl}}"], "path": ["admin", "users", ":id"], "variable": [{ "key": "id", "value": "user_id" }] } } },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{adminToken}}" }],
+            "body": { "mode": "raw", "raw": "{\n  \"firstName\": \"Maram\",\n  \"lastName\": \"Admin\",\n  \"email\": \"admin@example.com\",\n  \"role\": \"admin\"\n}" },
+            "url": { "raw": "{{baseUrl}}/admin/users/:id", "host": ["{{baseUrl}}"], "path": ["admin", "users", ":id"], "variable": [{ "key": "id", "value": "user_id" }] }
+          }
+        },
+        { "name": "Toggle Block User", "request": { "method": "PUT", "header": [{ "key": "token", "value": "{{adminToken}}" }], "url": { "raw": "{{baseUrl}}/admin/users/:id/block", "host": ["{{baseUrl}}"], "path": ["admin", "users", ":id", "block"], "variable": [{ "key": "id", "value": "user_id" }] } } },
+        { "name": "Delete User", "request": { "method": "DELETE", "header": [{ "key": "token", "value": "{{adminToken}}" }], "url": { "raw": "{{baseUrl}}/admin/users/:id", "host": ["{{baseUrl}}"], "path": ["admin", "users", ":id"], "variable": [{ "key": "id", "value": "user_id" }] } } },
+        { "name": "Categories", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{adminToken}}" }], "url": { "raw": "{{baseUrl}}/admin/categories", "host": ["{{baseUrl}}"], "path": ["admin", "categories"] } } },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{adminToken}}" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Utilities\"\n}" },
+            "url": { "raw": "{{baseUrl}}/admin/categories/:id", "host": ["{{baseUrl}}"], "path": ["admin", "categories", ":id"], "variable": [{ "key": "id", "value": "category_id" }] }
+          }
+        },
+        { "name": "Delete Category", "request": { "method": "DELETE", "header": [{ "key": "token", "value": "{{adminToken}}" }], "url": { "raw": "{{baseUrl}}/admin/categories/:id", "host": ["{{baseUrl}}"], "path": ["admin", "categories", ":id"], "variable": [{ "key": "id", "value": "category_id" }] } } },
+        { "name": "Items", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{adminToken}}" }], "url": { "raw": "{{baseUrl}}/admin/items", "host": ["{{baseUrl}}"], "path": ["admin", "items"] } } },
+        { "name": "Item Amazon Price", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{adminToken}}" }], "url": { "raw": "{{baseUrl}}/admin/items/:id/amazon-price", "host": ["{{baseUrl}}"], "path": ["admin", "items", ":id", "amazon-price"], "variable": [{ "key": "id", "value": "item_id" }] } } },
+        {
+          "name": "Update Item",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{adminToken}}" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Laptop\"\n}" },
+            "url": { "raw": "{{baseUrl}}/admin/items/:id", "host": ["{{baseUrl}}"], "path": ["admin", "items", ":id"], "variable": [{ "key": "id", "value": "item_id" }] }
+          }
+        },
+        { "name": "Delete Item", "request": { "method": "DELETE", "header": [{ "key": "token", "value": "{{adminToken}}" }], "url": { "raw": "{{baseUrl}}/admin/items/:id", "host": ["{{baseUrl}}"], "path": ["admin", "items", ":id"], "variable": [{ "key": "id", "value": "item_id" }] } } },
+        { "name": "Transactions", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{adminToken}}" }], "url": { "raw": "{{baseUrl}}/admin/transactions?page=1&limit=20", "host": ["{{baseUrl}}"], "path": ["admin", "transactions"], "query": [{ "key": "page", "value": "1" }, { "key": "limit", "value": "20" }] } } },
+        { "name": "Offers Cache", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{adminToken}}" }], "url": { "raw": "{{baseUrl}}/admin/offers", "host": ["{{baseUrl}}"], "path": ["admin", "offers"] } } }
       ]
     },
     {
       "name": "Export",
       "item": [
-        {
-          "name": "Export to PDF",
-          "request": {
-            "method": "GET",
-            "header": [{ "key": "token", "value": "{{token}}" }],
-            "url": { "raw": "{{baseUrl}}/export/pdf?startDate=2024-01-01&endDate=2024-12-31", "host": ["{{baseUrl}}"], "path": ["export", "pdf"], "query": [{ "key": "startDate", "value": "2024-01-01", "disabled": true }, { "key": "endDate", "value": "2024-12-31", "disabled": true }, { "key": "categoryId", "value": "", "disabled": true }] }
-          }
-        },
-        {
-          "name": "Export to CSV",
-          "request": {
-            "method": "GET",
-            "header": [{ "key": "token", "value": "{{token}}" }],
-            "url": { "raw": "{{baseUrl}}/export/csv?startDate=2024-01-01&endDate=2024-12-31", "host": ["{{baseUrl}}"], "path": ["export", "csv"], "query": [{ "key": "startDate", "value": "2024-01-01", "disabled": true }, { "key": "endDate", "value": "2024-12-31", "disabled": true }, { "key": "categoryId", "value": "", "disabled": true }] }
-          }
-        },
-        {
-          "name": "Export to JSON",
-          "request": {
-            "method": "GET",
-            "header": [{ "key": "token", "value": "{{token}}" }],
-            "url": { "raw": "{{baseUrl}}/export/json?startDate=2024-01-01&endDate=2024-12-31", "host": ["{{baseUrl}}"], "path": ["export", "json"], "query": [{ "key": "startDate", "value": "2024-01-01", "disabled": true }, { "key": "endDate", "value": "2024-12-31", "disabled": true }, { "key": "categoryId", "value": "", "disabled": true }] }
-          }
-        }
-      ]
-    },
-    {
-      "name": "AI Analysis",
-      "item": [
-        {
-          "name": "Analyze Text/Image",
-          "request": {
-            "method": "POST",
-            "header": [{ "key": "token", "value": "{{token}}" }],
-            "body": { "mode": "formdata", "formdata": [{ "key": "OCR_path", "type": "file" }, { "key": "text", "value": "اشتريت قهوة بـ 50 جنيه", "type": "text" }] },
-            "url": { "raw": "{{baseUrl}}/ai/analyze", "host": ["{{baseUrl}}"], "path": ["ai", "analyze"] }
-          }
-        },
-        {
-          "name": "Analyze Voice",
-          "request": {
-            "method": "POST",
-            "header": [{ "key": "token", "value": "{{token}}" }],
-            "body": { "mode": "formdata", "formdata": [{ "key": "voice_path", "type": "file" }] },
-            "url": { "raw": "{{baseUrl}}/ai/voice", "host": ["{{baseUrl}}"], "path": ["ai", "voice"] }
-          }
-        }
-      ]
-    },
-    {
-      "name": "Health Check",
-      "item": [
-        {
-          "name": "API Health",
-          "request": {
-            "method": "GET",
-            "url": { "raw": "{{baseUrl}}/api", "host": ["{{baseUrl}}"], "path": ["api"] }
-          }
-        }
+        { "name": "PDF", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{token}}" }], "url": { "raw": "{{baseUrl}}/export/pdf", "host": ["{{baseUrl}}"], "path": ["export", "pdf"] } } },
+        { "name": "CSV", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{token}}" }], "url": { "raw": "{{baseUrl}}/export/csv", "host": ["{{baseUrl}}"], "path": ["export", "csv"] } } },
+        { "name": "JSON", "request": { "method": "GET", "header": [{ "key": "token", "value": "{{token}}" }], "url": { "raw": "{{baseUrl}}/export/json", "host": ["{{baseUrl}}"], "path": ["export", "json"] } } }
       ]
     }
   ]
