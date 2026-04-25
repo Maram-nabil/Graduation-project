@@ -35,7 +35,7 @@ const schema = new mongoose.Schema(
       notifications: { type: Boolean, default: true }
     }
   },
-  { timestamps: { updatedAt: false }, versionKey: false }
+ { timestamps: true, versionKey: false }
 );
 
 // Indexes
