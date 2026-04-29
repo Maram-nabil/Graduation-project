@@ -31,6 +31,7 @@ export const createWithText = catchError(async (req, res, next) => {
         text,
         category: category._id,
         price,
+        quantity: req.body.quantity || 1,
         user: req.user._id,
     });
 
@@ -146,11 +147,11 @@ export const getTransactionsByDateRange = catchError(async (req, res, next) => {
 
 // Update transaction
 export const updateTransaction = catchError(async (req, res, next) => {
-    const { text, price, category } = req.body;
+    const { text, price, category, quantity } = req.body;
 
     const transaction = await Transactions.findOneAndUpdate(
         { _id: req.params.id, user: req.user._id },
-        { text, price, category },
+        { text, price, category , quantity},
         { new: true }
     ).populate('category');
 

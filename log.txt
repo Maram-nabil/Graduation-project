@@ -855,3 +855,112 @@
 [4/25/2026, 6:07:30 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
 [4/25/2026, 6:07:30 PM] [SERVER] Server listening on port 3001!
 [4/25/2026, 6:07:31 PM] [DB] Connected successfully
+[4/25/2026, 6:17:14 PM] [SERVER] Server is starting...
+[4/25/2026, 6:17:14 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/25/2026, 6:17:14 PM] [SERVER] Server listening on port 3001!
+[4/25/2026, 6:17:15 PM] [DB] Connected successfully
+[4/25/2026, 8:49:23 PM] [SERVER] Server is starting...
+[4/25/2026, 8:49:23 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/25/2026, 8:49:23 PM] [SERVER] Server listening on port 3001!
+[4/26/2026, 3:36:09 AM] [SERVER] Server is starting...
+[4/26/2026, 3:36:09 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/26/2026, 3:36:09 AM] [SERVER] Server listening on port 3001!
+[4/26/2026, 3:36:10 AM] [DB] Connected successfully
+[4/26/2026, 6:12:53 AM] [SERVER] Server is starting...
+[4/26/2026, 6:12:53 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/26/2026, 6:12:53 AM] [SERVER] Server listening on port 3001!
+[4/26/2026, 6:12:54 AM] [DB] Connected successfully
+[4/28/2026, 4:16:29 AM] [CONFIG] Configuration validated successfully
+[4/28/2026, 4:16:30 AM] [CONFIG] Configuration validated successfully
+[4/28/2026, 4:16:31 AM] [DB] Connected to MongoDB: ac-wtmeu0g-shard-00-02.a0leflb.mongodb.net
+[4/28/2026, 4:16:31 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/28/2026, 4:16:31 AM] [SERVER] HTTP server running on port 3001
+[4/28/2026, 4:16:31 AM] [SERVER] Environment: development
+[4/28/2026, 4:26:58 AM] [signupAndSendOtp] START {"body":{"firstName":"ali","lastName":"mostafa","email":"amwjndem@gmail.com","password":"kennd988y","phone":"012975880"}}
+[4/28/2026, 4:26:59 AM] [CONFIG] Configuration validated successfully
+[4/28/2026, 4:27:00 AM] [DB] Connected to MongoDB: ac-wtmeu0g-shard-00-00.a0leflb.mongodb.net
+[4/28/2026, 4:27:00 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/28/2026, 4:27:00 AM] [SERVER] HTTP server running on port 3001
+[4/28/2026, 4:27:00 AM] [SERVER] Environment: development
+[4/28/2026, 4:27:30 AM] [signupAndSendOtp] START {"body":{"firstName":"ali","lastName":"mostafa","email":"amwjndem@gmail.com","password":"kennd988y","phone":"012975880"}}
+[4/28/2026, 4:27:30 AM] [ERROR] [signupAndSendOtp] ERROR: Email already taken {"email":"amwjndem@gmail.com"}
+[4/28/2026, 4:27:52 AM] [signupAndSendOtp] START {"body":{"firstName":"ali","lastName":"mostafa","email":"m@gmail.com","password":"kennd988y","phone":"012975880"}}
+[4/28/2026, 4:27:52 AM] [signupAndSendOtp] SUCCESS {"user":"m@gmail.com"}
+[4/28/2026, 4:27:55 AM] [EMAIL] Message sent: <da8fdc23-6a9a-52b6-0c1a-73e62f5ae6ff@gmail.com>
+[4/28/2026, 4:27:55 AM] [signupAndSendOtp] EMAIL SENT <da8fdc23-6a9a-52b6-0c1a-73e62f5ae6ff@gmail.com>
+[4/28/2026, 5:05:41 AM] [SERVER] Server is starting...
+[4/28/2026, 5:05:41 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/28/2026, 5:05:41 AM] [SERVER] Server listening on port 3001!
+[4/28/2026, 5:05:42 AM] [DB] Connected successfully
+[4/28/2026, 7:39:16 AM] [SERVER] Server is starting...
+[4/28/2026, 7:39:16 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/28/2026, 7:39:16 AM] [SERVER] Server listening on port 3001!
+[4/28/2026, 7:39:17 AM] [DB] Connected successfully
+[4/28/2026, 5:43:01 PM] [SERVER] Server is starting...
+[4/28/2026, 5:43:01 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/28/2026, 5:43:01 PM] [SERVER] Server listening on port 3001!
+[4/28/2026, 5:43:02 PM] [DB] Connected successfully
+[4/28/2026, 5:51:50 PM] [SERVER] Server is starting...
+[4/28/2026, 5:51:51 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/28/2026, 5:51:51 PM] [SERVER] Server listening on port 3001!
+[4/28/2026, 5:51:52 PM] [DB] Connected successfully
+[4/28/2026, 7:13:42 PM] [URL_ERROR] 404 - Route not found -> /debug/clear-offers-cache
+[4/28/2026, 7:13:43 PM] [URL_ERROR] 404 - Route not found -> /favicon.ico
+[4/28/2026, 7:30:35 PM] [SERVER] Server is starting...
+[4/28/2026, 7:30:35 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/28/2026, 7:30:35 PM] [SERVER] Server listening on port 3001!
+[4/28/2026, 7:30:36 PM] [DB] Connected successfully
+[4/29/2026, 3:15:40 AM] [SERVER] Server is starting...
+[4/29/2026, 3:15:40 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/29/2026, 3:15:40 AM] [SERVER] Server listening on port 3001!
+[4/29/2026, 3:15:41 AM] [DB] Connected successfully
+[4/29/2026, 3:37:55 AM] [SERVER] Server is starting...
+[4/29/2026, 3:37:55 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/29/2026, 3:37:55 AM] [SERVER] Server listening on port 3001!
+[4/29/2026, 3:37:55 AM] [DB] Connected successfully
+[4/29/2026, 9:52:28 PM] [SERVER] Server is starting...
+[4/29/2026, 9:52:28 PM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/29/2026, 9:52:28 PM] [SERVER] Server listening on port 3001!
+[4/29/2026, 9:52:28 PM] [DB] Connected successfully
+[4/30/2026, 12:53:25 AM] [SERVER] Server is starting...
+[4/30/2026, 12:53:25 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/30/2026, 12:53:25 AM] [SERVER] Server listening on port 3001!
+[4/30/2026, 12:53:25 AM] [DB] Connected successfully
+[4/30/2026, 12:53:29 AM] [SERVER] Server is starting...
+[4/30/2026, 12:53:29 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/30/2026, 12:53:29 AM] [SERVER] Server listening on port 3001!
+[4/30/2026, 12:53:30 AM] [DB] Connected successfully
+[4/30/2026, 12:53:37 AM] [SERVER] Server is starting...
+[4/30/2026, 12:53:37 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/30/2026, 12:53:37 AM] [SERVER] Server listening on port 3001!
+[4/30/2026, 12:53:37 AM] [DB] Connected successfully
+[4/30/2026, 12:57:27 AM] [SERVER] Server is starting...
+[4/30/2026, 12:57:27 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/30/2026, 12:57:27 AM] [SERVER] Server listening on port 3001!
+[4/30/2026, 12:57:28 AM] [DB] Connected successfully
+[4/30/2026, 12:57:30 AM] [SERVER] Server is starting...
+[4/30/2026, 12:57:30 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/30/2026, 12:57:30 AM] [SERVER] Server listening on port 3001!
+[4/30/2026, 12:57:31 AM] [DB] Connected successfully
+[4/30/2026, 12:58:22 AM] [SERVER] Server is starting...
+[4/30/2026, 12:58:22 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/30/2026, 12:58:22 AM] [SERVER] Server listening on port 3001!
+[4/30/2026, 12:58:24 AM] [SERVER] Server is starting...
+[4/30/2026, 12:58:24 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/30/2026, 12:58:24 AM] [SERVER] Server listening on port 3001!
+[4/30/2026, 12:58:25 AM] [DB] Connected successfully
+[4/30/2026, 12:58:27 AM] [SERVER] Server is starting...
+[4/30/2026, 12:58:27 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/30/2026, 12:58:27 AM] [SERVER] Server listening on port 3001!
+[4/30/2026, 12:58:28 AM] [SERVER] Server is starting...
+[4/30/2026, 12:58:28 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/30/2026, 12:58:28 AM] [SERVER] Server listening on port 3001!
+[4/30/2026, 12:58:30 AM] [DB] Connected successfully
+[4/30/2026, 12:58:44 AM] [SERVER] Server is starting...
+[4/30/2026, 12:58:44 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/30/2026, 12:58:44 AM] [SERVER] Server listening on port 3001!
+[4/30/2026, 12:58:46 AM] [DB] Connected successfully
+[4/30/2026, 12:58:47 AM] [SERVER] Server is starting...
+[4/30/2026, 12:58:47 AM] [WS] WebSocket server started on ws://0.0.0.0:3002
+[4/30/2026, 12:58:47 AM] [SERVER] Server listening on port 3001!
+[4/30/2026, 12:58:48 AM] [DB] Connected successfully
